@@ -1,36 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
 import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {setIsAuthenticated} from './store/auth/actions';
+import {authUserWithToken, getUserInfo} from './store/auth/actions';
+import jwtDecode from 'jwt-decode';
+import {setAuthToken} from './utils/auth';
+import {store} from './store';
+import {pagePaths} from './config/routes';
+import { Routes} from 'react-router';
+import { Route } from 'react-router'
+import Navigation from './components/common/navigation';
+import Footer from './components/common/footer';
+import ProtectedRoute from './guards/auth/ProtectedRoute';
 
 function App() {
-  const dispatch = useDispatch();
 
-  const {auth: {isAuthenticated}} = useSelector(state => state);
-  console.log(isAuthenticated)
   useEffect(() => {
-    dispatch(setIsAuthenticated(true));
-  }, [dispatch]);
-
+    if (localStorage.jwtToken) {
+      const rawToken = localStorage.jwtToken.split(' ')[1]
+      const decoded = jwtDecode(rawToken)
+      setAuthToken(localStorage.jwtToken)
+      if (decoded.exp && decoded.exp < Date.now() / 1000) {
+      //  TODO: get new accessToken
+      } else {
+        store.dispatch(authUserWithToken({accessToken: rawToken}))
+        store.dispatch(getUserInfo(decoded?.sub))
+      }
+    }
+  }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <Navigation />
+          <Routes>
+            {pagePaths.publicRoutes.map(route => <Route key={route.path} exact path='/' {...route}></Route>)}
+            {pagePaths.privateRoutes.map(route => <Route key={route.path} exact path={route.path} element={<ProtectedRoute component={route.component} {...route} />}></Route>)}
+          </Routes>
+      <Footer />
+    </>
   );
 }
 

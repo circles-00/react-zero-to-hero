@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "Inter";
+  src: url(../../../assets/fonts/Inter-Regular.ttf) format("truetype");
+}
+
+.login-page-container {
+  margin-top: 50px;
+  font-family: Inter, sans-serif!important;
+}
+
+.login-form-container {
+  border: #ffffff solid 1px;
+  padding: 30px;
+  width: 30%;
+}
+
+.login-form-container > input {
+  height: 48px;
+  border-radius: 5px;
+}
+
+.login-form-container > div > button {
+  margin-top: 20px;
+  background-color: #00FFD5;
+  border: none;
+  height: 43px;
+  border-radius: 5px;
+  width: 35%;
+}
+
+.login-form-container > div > p {
+  line-height: 6;
+  padding-right: 5px;
+}
+
+.login-form-container > hr {
+  width: 50%;
+  margin: auto;
+  height: 2px;
+  border: none;
+  background-color: #ffffff;
+}
+
+.errors {
+  color: red;
+  text-align: start;
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+  .login-form-container {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 700px) {
+  .login-form-container {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 875px) {
+  .login-form-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 875px) and (max-width: 1280px) {
+  .login-form-container {
+    width: 40%;
+  }
+}
