@@ -14,7 +14,6 @@ function ProtectedRoute({ path, component: Component, ...rest }) {
   } = useSelector(state => state)
   const dispatch = useDispatch()
   const location = useLocation()
-  console.log(Component)
 
   useEffect(() => {
     if (localStorage.jwtToken && location.pathname === path) {

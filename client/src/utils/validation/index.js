@@ -38,7 +38,7 @@ const verifyLoginInformation = ({ email, password }) => {
 
   const { isValid: isEmailValid, errors: emailErrors } = validateEmailAddress(email)
   if (!isEmailValid) errors.email = emailErrors
-  console.log(isEmailValid)
+
   if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) errors.password = 'Password must have minimum 8 characters, and at least one number'
 
   if (Object.values(errors).length === 0) isValid = true

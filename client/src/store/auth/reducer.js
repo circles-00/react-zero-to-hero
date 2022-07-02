@@ -17,7 +17,7 @@ export const reducer = (
     return {
       ...state,
       isAuthenticated: commonStateEnum.TRUE,
-      userInfo: !isEmpty(action.payload) ? state.userInfo : action.payload
+      userInfo: !isEmpty(action.payload) ? action.payload : state.userInfo
     };
 
   case SET_NOT_AUTHENTICATED:

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { isInitialState, isTrueState } from '../constants/state.enum'
+import { isTrueState } from '../constants/state.enum'
 import { learnPage } from '../config/routes'
 import { useHistory } from 'react-router'
 
@@ -15,7 +15,7 @@ const useAuthRedirect = () => {
     }
   }, [isAuthenticated, history]);
 
-  if(!isInitialState(isAuthenticated)) return { isAuthenticated }
+  return { isAuthenticated }
 }
 
 export default useAuthRedirect

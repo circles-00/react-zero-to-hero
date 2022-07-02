@@ -1,6 +1,6 @@
 import './App.css'
 import { useEffect } from 'react'
-import { authUserWithToken, getUserInfo } from './store/auth/actions'
+import { authUserWithToken, getUserInfo, setNotAuthenticated } from './store/auth/actions'
 import jwtDecode from 'jwt-decode'
 import { setAuthToken } from './utils/auth'
 import { store } from './store'
@@ -27,12 +27,16 @@ function App() {
       setAuthToken(localStorage.jwtToken)
       if (decoded.exp && decoded.exp < Date.now() / 1000) {
         //  TODO: get new accessToken
+        store.dispatch(setNotAuthenticated())
       } else {
         store.dispatch(authUserWithToken({ accessToken: rawToken }))
         store.dispatch(getUserInfo(decoded?.sub))
       }
+    } else {
+      store.dispatch(setNotAuthenticated())
     }
   }, [])
+
 
   return (
     <>

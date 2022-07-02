@@ -7,28 +7,36 @@ export const homePage = {
   path: '/',
   exact: true,
   element: <HomePage />,
-  component: HomePage
+  component: HomePage,
+  title: 'Home',
+  ignoreNav: true
 };
 
 export const loginPage = {
   path: '/login',
   exact: true,
   element: <LoginPage />,
-  component: LoginPage
+  component: LoginPage,
+  title: 'Log In',
+  ignoreNav: false
 };
 
 export const learnPage = {
   path: '/learn',
   exact: true,
   element: <LearnPage />,
-  component: LearnPage
+  component: LearnPage,
+  title: 'Learn',
+  ignoreNav: false
 };
 
 export const registerPage = {
   path: '/register',
   exact: true,
   element: <RegisterPage />,
-  component: RegisterPage
+  component: RegisterPage,
+  title: 'Register',
+  ignoreNav: false
 };
 
 export const pagePaths = {

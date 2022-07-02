@@ -95,3 +95,7 @@ footer {
 .secondary-color {
   color: #7000B1;
 }
+
+.nav-link-active {
+  border-bottom: #00FFD5 1px solid;
+}
