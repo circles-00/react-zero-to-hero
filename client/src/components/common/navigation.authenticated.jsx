@@ -1,12 +1,10 @@
 import smallLogo from '../../assets/img/small-logo.png'
 import './style.css'
 import { homePage, pagePaths } from '../../config/routes'
-import { useHistory } from 'react-router'
 import { useSelector } from 'react-redux'
 import useNavigationUtils from '../../hooks/useNavigationUtils'
 
 const NavigationAuthenticated = () => {
-  const history = useHistory()
   const { auth: { userInfo } } = useSelector(state => state)
 
   const { onNavLinkClickHandle, getNavItemClassName } = useNavigationUtils()

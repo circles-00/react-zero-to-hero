@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import jwt_decode from 'jwt-decode'
-import AuthRedirectRoute from './AuthRedirectRoute'
+import AuthRedirectRoute from './auth.redirect.route'
 
 function AuthRoute({
   redirectTo,

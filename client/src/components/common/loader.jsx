@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Backdrop from './Backdrop'
+import Backdrop from './backdrop'
 import './loader.css'
 
 function Loader({show}) {
