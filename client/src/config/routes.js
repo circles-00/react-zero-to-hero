@@ -1,6 +1,7 @@
 import HomePage from '../pages/home.page';
 import LoginPage from '../pages/login.page';
 import LearnPage from '../pages/learn.page';
+import RegisterPage from '../pages/register.page'
 
 export const homePage = {
   path: '/',
@@ -23,10 +24,18 @@ export const learnPage = {
   component: LearnPage
 };
 
+export const registerPage = {
+  path: '/register',
+  exact: true,
+  element: <RegisterPage />,
+  component: RegisterPage
+};
+
 export const pagePaths = {
   publicRoutes: [
     homePage,
-    loginPage
+    loginPage,
+    registerPage
   ],
   privateRoutes: [
     learnPage

@@ -6,5 +6,9 @@ export const apiPaths = {
   loginApi: {
     path: '/authentication',
     method: 'post'
+  },
+  registerApi: {
+    path: '/users',
+    method: 'post'
   }
 }

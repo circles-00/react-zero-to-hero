@@ -5,8 +5,9 @@ import {useEffect, useState} from 'react';
 import {login} from '../../../store/auth/actions';
 import './style.css';
 import {verifyLoginInformation} from '../../../utils/validation';
-import {useNavigate} from 'react-router-dom';
+import { useHistory } from 'react-router'
 import {learnPage} from '../../../config/routes';
+import { isTrueState } from '../../../constants/state.enum'
 
 /**
  *
@@ -19,7 +20,7 @@ import {learnPage} from '../../../config/routes';
 const LoginForm = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const history = useHistory()
 
   const { auth: {errors: authErrors,  isAuthenticated}} = useSelector(state => state)
 
@@ -34,10 +35,10 @@ const LoginForm = () => {
   }, [authErrors])
 
   useEffect(() => {
-    if(isAuthenticated) {
-      navigate(learnPage.path)
+    if(isTrueState(isAuthenticated)) {
+      history.push(learnPage.path)
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, history])
 
   const handleOnEmailChange = (event) => {
     setErrors({...errors, email: null})

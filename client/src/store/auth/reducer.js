@@ -1,9 +1,9 @@
 import isEmpty from 'lodash.isempty';
-import {SET_AUTH_ERRORS, SET_IS_AUTHENTICATED, SET_NOT_AUTHENTICATED, SET_USER_INFO} from './actionTypes';
-
+import {SET_AUTH_ERRORS, SET_IS_AUTHENTICATED, SET_NOT_AUTHENTICATED, SET_USER_INFO} from './action.types';
+import { commonStateEnum } from '../../constants/state.enum'
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: commonStateEnum.INITIAL_STATE,
   userInfo: {},
   errors: {}
 };
@@ -16,14 +16,14 @@ export const reducer = (
   case SET_IS_AUTHENTICATED:
     return {
       ...state,
-      isAuthenticated: true,
+      isAuthenticated: commonStateEnum.TRUE,
       userInfo: !isEmpty(action.payload) ? state.userInfo : action.payload
     };
 
   case SET_NOT_AUTHENTICATED:
     return {
       ...state,
-      isAuthenticated: false,
+      isAuthenticated: commonStateEnum.FALSE,
       userInfo: {}
     };
 

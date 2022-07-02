@@ -45,6 +45,7 @@
   color: red;
   text-align: start;
   margin-top: 10px;
+  font-size: 12px;
 }
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
