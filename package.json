@@ -31,7 +31,9 @@
     "mocha": "mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
     "compile": "shx rm -rf lib/ && tsc",
     "client-start": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client-start\" "
+    "dev": "concurrently \"npm run server\" \"npm run client-start\" ",
+    "migration:generate": "npm run compile && node_modules/.bin/sequelize migration:generate",
+    "migrate": "npm run compile && node_modules/.bin/sequelize db:migrate"
   },
   "standard": {
     "env": [
@@ -60,7 +62,9 @@
     "pg": "^8.7.3",
     "sequelize": "^6.20.1",
     "serve-favicon": "^2.5.0",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "socket.io-parser": "^4.2.1",
+    "sequelize-cli-typescript": "git+ssh://git@me.github:wildcookie007/sequelize-cli-typescript.git#master"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.36",

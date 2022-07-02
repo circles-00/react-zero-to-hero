@@ -21,6 +21,7 @@ export default function (app: Application): typeof Model {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     password: {
       type: DataTypes.STRING,
@@ -39,7 +40,6 @@ export default function (app: Application): typeof Model {
     githubId: { type: DataTypes.STRING },
 
   }, {
-    indexes:[{unique:true, fields: ['email']}],
     hooks: {
       beforeCount(options: any): HookReturn {
         options.raw = true;

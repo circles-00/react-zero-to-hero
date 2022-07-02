@@ -61,5 +61,5 @@
       }
     }
   },
-  "postgres": "POSTGRES_CONNECTION_STRING"
+  "postgres": "DATABASE_URL"
 }
