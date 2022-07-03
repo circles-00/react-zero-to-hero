@@ -1,0 +1,40 @@
+version: "1"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: ${DATABASE_URL}
+        JWT_SECRET: ${JWT_SECRET}
+        NODE_ENV: ${NODE_ENV}
+        PORT_NUMBER: ${PORT_NUMBER}
+
+    image: react-zero-to-hero:${BUILD_NUMBER}
+    container_name: react-zero-to-hero-${BRANCH_NAME}
+    environment:
+      - DATABASE_URL
+      - JWT_SECRET
+      - NODE_ENV
+      - PORT_NUMBER
+
+    restart: always
+    ports:
+      - "${PORT_NUMBER}:5000"
+    volumes:
+      - /opt/react-zero-to-hero/logs-${BRANCH_NAME}:/usr/src/react-zero-to-hero/logs:rw
+      - /opt/react-zero-to-hero/data-${BRANCH_NAME}:/usr/src/react-zero-to-hero/public:rw
+  db:
+    image: postgres:11.2-alpine
+    container_name: postgres-${BRANCH_NAME}
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - ./react-zero-to-hero/init-postgres.sh:/docker-entrypoint-initdb.d/init-postgres.sh
+      - /opt/react-zero-to-hero-db-${BRANCH_NAME}:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"

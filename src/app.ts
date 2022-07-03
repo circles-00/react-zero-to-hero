@@ -34,9 +34,19 @@ app.use(cors());
 app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
-app.use('/', express.static(app.get('public')));
+app.use('/', express.static(path.join(__dirname, '../client/build')));
+
+// app.get('/*', function(req: any, res: any) {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err: any) {
+//     if (err) {
+//       console.log('app.get() error = ' + err);
+//       res.status(500).send(err.message);
+//     }
+//   });
+// });
+
+
 
 // Set up Plugins and providers
 app.configure(express.rest());

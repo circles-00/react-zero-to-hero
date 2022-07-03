@@ -59,6 +59,7 @@ export const register = (payload) => async dispatch => {
 
 export const getUserInfo = (userId) => async dispatch => {
   try {
+    console.log(userId)
     dispatch(setLoading())
     const {data} = await axios[apiPaths.getUserInfoApi.method](apiPaths.getUserInfoApi.path.replace(':id', userId));
     dispatch(setUserInfo(data))

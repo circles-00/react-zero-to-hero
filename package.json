@@ -20,20 +20,21 @@
     "config": "config/"
   },
   "engines": {
-    "node": "^17.0.0",
+    "node": ">=16.0.0",
     "yarn": ">= 0.18.0"
   },
   "scripts": {
     "test": "yarn run lint && yarn run compile && yarn run mocha",
     "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
     "server": "ts-node-dev --no-notify src/",
-    "start": "yarn run compile && node lib/",
+    "start": "yarn migrate && node lib/",
     "mocha": "mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
     "compile": "shx rm -rf lib/ && tsc",
+    "build": "tsc",
     "client-start": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client-start\" ",
     "migration:generate": "npm run compile && node_modules/.bin/sequelize migration:generate",
-    "migrate": "npm run compile && node_modules/.bin/sequelize db:migrate"
+    "migrate": "node_modules/.bin/sequelize db:migrate"
   },
   "standard": {
     "env": [
@@ -64,7 +65,7 @@
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0",
     "socket.io-parser": "^4.2.1",
-    "sequelize-cli-typescript": "git+ssh://git@github.com:wildcookie007/sequelize-cli-typescript.git#master"
+    "sequelize-cli-typescript": "https://github.com/moodseller/sequelize-cli-typescript.git#master"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.36",
