@@ -99,3 +99,33 @@ footer {
 .nav-link-active {
   border-bottom: #00FFD5 1px solid;
 }
+
+
+.community-container h1 {
+  font-size: 64px;
+  margin-bottom: 42px;
+}
+
+.community-container p {
+  margin-left: 50px;
+  font-size: 32px;
+  text-align: start;
+  line-height: 1.5;
+  width: 92%;
+}
+
+.discord-container {
+  margin-left: 50px;
+  width: 90%;
+  margin-top: 50px;
+}
+
+.discord-container button {
+  color: #699BF7;
+  background-color: #00FFD5;
+  border: none;
+  width: 40%;
+  font-size: 32px;
+  height: 114px;
+  margin-top: 45px;
+}

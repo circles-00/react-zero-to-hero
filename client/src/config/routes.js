@@ -2,6 +2,7 @@ import HomePage from '../pages/home.page';
 import LoginPage from '../pages/login.page';
 import LearnPage from '../pages/learn.page';
 import RegisterPage from '../pages/register.page'
+import CommunityPage from '../pages/community.page'
 
 export const homePage = {
   path: '/',
@@ -30,6 +31,15 @@ export const learnPage = {
   ignoreNav: false
 };
 
+export const communityPage = {
+  path: '/community',
+  exact: true,
+  element: <CommunityPage />,
+  component: CommunityPage,
+  title: 'Community',
+  ignoreNav: false
+};
+
 export const registerPage = {
   path: '/register',
   exact: true,
@@ -46,6 +56,7 @@ export const pagePaths = {
     registerPage
   ],
   privateRoutes: [
-    learnPage
+    learnPage,
+    communityPage
   ]
 };
