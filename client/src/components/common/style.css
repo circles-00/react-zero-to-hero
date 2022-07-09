@@ -129,3 +129,9 @@ footer {
   height: 114px;
   margin-top: 45px;
 }
+
+.disabled {
+  background-color: gray!important;
+  color: #00FFD5!important;
+  cursor: not-allowed;
+}

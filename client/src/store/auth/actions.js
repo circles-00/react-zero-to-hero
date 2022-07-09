@@ -23,18 +23,18 @@ export const setAuthErrors = (payload) => ({
   payload
 })
 
-export const authUserWithToken = ({accessToken, user}) => async dispatch => {
-  setAuthToken(accessToken)
-  dispatch(setIsAuthenticated(user))
+export const authUserWithToken = ({accessToken}) => async dispatch => {
+  setAuthToken(`Bearer ${accessToken}`)
+  dispatch(setIsAuthenticated())
   localStorage.setItem('jwtToken', `Bearer ${accessToken}`)
 }
 
 export const login = (payload) => async dispatch => {
   try {
     dispatch(setLoading())
-    const { data: {accessToken, user}} = await axios[apiPaths.loginApi.method](apiPaths.loginApi.path, {strategy: 'local', ...payload});
+    const { data: {access_token: accessToken}} = await axios[apiPaths.loginApi.method](apiPaths.loginApi.path, {strategy: 'local', ...payload});
 
-    dispatch(authUserWithToken({accessToken, user}))
+    dispatch(authUserWithToken({accessToken}))
     dispatch(unSetLoading())
   } catch (err) {
     dispatch(unSetLoading())
@@ -59,7 +59,6 @@ export const register = (payload) => async dispatch => {
 
 export const getUserInfo = (userId) => async dispatch => {
   try {
-    console.log(userId)
     dispatch(setLoading())
     const {data} = await axios[apiPaths.getUserInfoApi.method](apiPaths.getUserInfoApi.path.replace(':id', userId));
     dispatch(setUserInfo(data))
