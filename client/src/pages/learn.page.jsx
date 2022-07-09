@@ -9,11 +9,11 @@ import { isInitialState } from '../constants/state.enum'
 const LearnPage = () => {
   const dispatch = useDispatch()
 
-  const { lessons: { lessons } } = useSelector(state => state)
+  const { lessons: { lessons }, feedback: {isLoading} } = useSelector(state => state)
 
   useEffect(() => {
-    isInitialState(lessons) && dispatch(fetchLessons())
-  }, [lessons, dispatch])
+    isInitialState(lessons) && !isLoading && dispatch(fetchLessons())
+  }, [lessons, dispatch, isLoading])
 
   const showSeparator = (idx, lesson) => (
     ((idx - 1 !== lesson.length - 1) && (!lesson.isDone && lessons[idx - 1].isDone))
