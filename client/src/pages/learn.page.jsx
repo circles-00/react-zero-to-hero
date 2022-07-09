@@ -9,11 +9,11 @@ import { isInitialState } from '../constants/state.enum'
 const LearnPage = () => {
   const dispatch = useDispatch()
 
-  const { lessons: { lessons }, feedback: {isLoading} } = useSelector(state => state)
+  const { lessons: { lessons } } = useSelector(state => state)
 
   useEffect(() => {
-    isInitialState(lessons) && !isLoading && dispatch(fetchLessons())
-  }, [lessons, dispatch, isLoading])
+    isInitialState(lessons) && dispatch(fetchLessons())
+  }, [lessons, dispatch])
 
   const showSeparator = (idx, lesson) => (
     ((idx - 1 !== lesson.length - 1) && (!lesson.isDone && lessons[idx - 1].isDone))
@@ -23,8 +23,8 @@ const LearnPage = () => {
     <section className='container-lg d-flex justify-content-center flex-column text-center'>
       <Title />
       {!isInitialState(lessons) && lessons.map((lesson, idx) => (
-        <Fragment>
-          <Lesson key={idx} idx={idx} title={lesson.title} shortDescription={lesson.shortDescription}
+        <Fragment key={idx}>
+          <Lesson idx={idx} title={lesson.title} shortDescription={lesson.shortDescription}
                   difficulty={lesson.difficulty} isDone={lesson.isDone} showSeparator={showSeparator(idx, lesson)} />
           {showSeparator(idx, lesson) ?
             <div className='d-flex flex-row justify-content-between'

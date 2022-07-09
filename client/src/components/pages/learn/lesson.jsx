@@ -4,8 +4,6 @@ import './style.css'
 import { generateRangeArray } from '../../../utils/common'
 
 const Lesson = ({idx, title, shortDescription, difficulty, isDone, showSeparator}) => {
-  console.log(isDone)
-
   const getIsDisabled = () => (
     (!isDone && idx !== 0) && !showSeparator
   )

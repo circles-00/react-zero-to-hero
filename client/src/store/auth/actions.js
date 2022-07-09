@@ -35,6 +35,7 @@ export const login = (payload) => async dispatch => {
     const { data: {access_token: accessToken}} = await axios[apiPaths.loginApi.method](apiPaths.loginApi.path, {strategy: 'local', ...payload});
 
     dispatch(authUserWithToken({accessToken}))
+    dispatch(getUserInfo())
     dispatch(unSetLoading())
   } catch (err) {
     dispatch(unSetLoading())
@@ -57,10 +58,10 @@ export const register = (payload) => async dispatch => {
   }
 }
 
-export const getUserInfo = (userId) => async dispatch => {
+export const getUserInfo = () => async dispatch => {
   try {
     dispatch(setLoading())
-    const {data} = await axios[apiPaths.getUserInfoApi.method](apiPaths.getUserInfoApi.path.replace(':id', userId));
+    const {data} = await axios[apiPaths.getUserInfoApi.method](apiPaths.getUserInfoApi.path);
     dispatch(setUserInfo(data))
     dispatch(unSetLoading())
   } catch (err) {
