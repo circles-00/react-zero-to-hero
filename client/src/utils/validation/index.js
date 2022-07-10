@@ -78,6 +78,7 @@ const verifyRegisterInformation = ({
     errors.password =
       'Password must have minimum 8 characters, and at least one number'
 
+  // eslint-disable-next-line security/detect-possible-timing-attacks
   if (password !== confirmPassword)
     errors.confirmPassword = 'Passwords do not match'
 

@@ -2,11 +2,14 @@ import smallLogo from '../../assets/img/small-logo.png'
 import './style.css'
 import { homePage, pagePaths } from '../../config/routes'
 import useNavigationUtils from '../../hooks/useNavigationUtils'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { isTrueState } from '../../constants/state.enum'
+import { logout } from '../../store/auth/actions'
 
 const Navigation = () => {
+  const dispatch = useDispatch()
+
   const [navigationLinks, setNavigationLinks] = useState([])
 
   const {
@@ -19,6 +22,10 @@ const Navigation = () => {
       ? setNavigationLinks(pagePaths.privateRoutes)
       : setNavigationLinks(pagePaths.publicRoutes)
   }, [isAuthenticated])
+
+  const onHandleLogout = () => {
+    dispatch(logout())
+  }
 
   return (
     <header className="container-md">
@@ -55,6 +62,11 @@ const Navigation = () => {
         {isTrueState(isAuthenticated) ? (
           <div className="container-md ml-5 d-flex justify-content-end nav-links">
             <span>Hi, {userInfo.firstName} </span>
+            <i
+              onClick={onHandleLogout}
+              style={{ marginLeft: '15px' }}
+              className="fa-solid fa-right-from-bracket custom-href"
+            ></i>
           </div>
         ) : null}
       </nav>

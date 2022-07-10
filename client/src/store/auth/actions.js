@@ -30,11 +30,17 @@ export const setAuthErrors = (payload) => ({
 
 export const authUserWithToken =
   ({ accessToken }) =>
-  async (dispatch) => {
+  (dispatch) => {
     setAuthToken(`Bearer ${accessToken}`)
     dispatch(setIsAuthenticated())
     localStorage.setItem('jwtToken', `Bearer ${accessToken}`)
   }
+
+export const logout = () => (dispatch) => {
+  setAuthToken(undefined)
+  dispatch(setNotAuthenticated())
+  localStorage.removeItem('jwtToken')
+}
 
 export const login = (payload) => async (dispatch) => {
   try {

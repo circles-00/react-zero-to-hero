@@ -1,12 +1,11 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "security", "jsx-a11y"],
+  "plugins": ["@typescript-eslint", "security"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:security/recommended",
-    "plugin:jsx-a11y/recommended",
     "prettier",
     "plugin:prettier/recommended"
   ],
@@ -17,18 +16,7 @@
     "node": true
   },
   "rules": {
-    "jsx-a11y/no-noninteractive-element-interactions": [
-      "error",
-      {
-        "handlers": [
-          "onMouseDown",
-          "onMouseUp",
-          "onKeyPress",
-          "onKeyDown",
-          "onKeyUp"
-        ]
-      }
-    ],
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
     "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
