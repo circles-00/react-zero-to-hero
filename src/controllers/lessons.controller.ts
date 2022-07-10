@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { LessonsService } from '../services/lessons.service'
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
+import { JwtAuthGuard } from '../common/helpers/guards/jwt-auth.guard'
 
 @Controller('lessons')
 export class LessonsController {

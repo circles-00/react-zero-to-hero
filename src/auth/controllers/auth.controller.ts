@@ -8,13 +8,13 @@ import {
   HttpStatus,
   Body,
 } from '@nestjs/common'
-import { LocalAuthGuard } from '../guards/local-auth.guard'
+import { LocalAuthGuard } from '../../common/helpers/guards/local-auth.guard'
 import { AuthService } from '../services/auth.service'
-import { JwtAuthGuard } from '../guards/jwt-auth.guard'
-import { RegistrationDto } from '../../dtos/registration.dto'
+import { JwtAuthGuard } from '../../common/helpers/guards/jwt-auth.guard'
+import { RegistrationDto } from '../../dto/registration.dto'
 import { User } from '../../models/user.entity'
-import { Public } from '../../decorators/public.decorator'
-import { ThirdPartyLoginDto } from '../dtos/third-party-login.dto'
+import { Public } from '../../common/helpers/decorators/public.decorator'
+import { ThirdPartyLoginDto } from '../dto/third-party-login.dto'
 import { GoogleAuthService } from '../services/google.auth.service'
 import {
   IThirdPartyLoginPayload,
