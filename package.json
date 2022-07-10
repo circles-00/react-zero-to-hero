@@ -39,7 +39,6 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.1",
-    "fluent-ffmpeg": "^2.1.2",
     "github-oauth-ts": "^1.0.2",
     "google-auth-library": "^8.1.0",
     "passport": "^0.6.0",
@@ -49,10 +48,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "stream-chunker": "^1.2.8",
     "typeorm": "^0.3.6",
-    "youtube-search-without-api-key": "^1.0.7",
-    "ytdl-core": "^4.11.0",
     "axios": "^0.27.2"
   },
   "devDependencies": {
