@@ -40,7 +40,7 @@ export class AuthController {
   @Post('third-party')
   @HttpCode(HttpStatus.OK)
   @Public()
-  async googleAuth(@Body() body: ThirdPartyLoginDto, @Request() req) {
+  async thirdPartyAuth(@Body() body: ThirdPartyLoginDto, @Request() req) {
     const { token, method } = body
 
     const payload: IThirdPartyLoginPayload = await this.getThirdPartyService(method).getPayloadFromToken(token)
