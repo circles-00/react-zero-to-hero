@@ -12,6 +12,7 @@ import { User } from '../../models/user.entity'
 import { UsersService } from '../../services/users.service'
 import { GoogleAuthService } from '../services/google.auth.service'
 import { GithubAuthService } from '../services/github.auth.service'
+import { FacebookAuthService } from '../services/facebook.auth.service'
 
 @Module({
   imports: [
@@ -23,8 +24,8 @@ import { GithubAuthService } from '../services/github.auth.service'
     }),
     TypeOrmModule.forFeature([User])
   ],
-  providers: [AuthService, UsersService, LocalStrategy, JwtStrategy, GoogleAuthService, GithubAuthService],
+  providers: [AuthService, UsersService, LocalStrategy, JwtStrategy, GoogleAuthService, GithubAuthService, FacebookAuthService],
   controllers: [AuthController],
-  exports: [AuthService, UsersService, GoogleAuthService, GithubAuthService],
+  exports: [AuthService, UsersService, GoogleAuthService, GithubAuthService, FacebookAuthService],
 })
 export class AuthModule {}

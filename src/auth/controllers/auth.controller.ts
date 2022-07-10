@@ -17,11 +17,12 @@ import { ThirdPartyLoginDto } from '../dtos/third-party-login.dto'
 import { GoogleAuthService } from '../services/google.auth.service'
 import { IThirdPartyLoginPayload, thirdPartyLoginMethodType } from '../../common/interfaces/types'
 import { GithubAuthService } from '../services/github.auth.service'
+import { FacebookAuthService } from '../services/facebook.auth.service'
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService, private readonly googleAuthService: GoogleAuthService,
-    private readonly githubAuthService: GithubAuthService) {
+    private readonly githubAuthService: GithubAuthService, private readonly facebookAuthService: FacebookAuthService) {
   }
 
   @Post("register")
@@ -67,7 +68,7 @@ export class AuthController {
     case 'GITHUB':
       return this.githubAuthService
     case 'FACEBOOK':
-      // return facebook service
+      return this.facebookAuthService
     }
 
   }

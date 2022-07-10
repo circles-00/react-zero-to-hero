@@ -52,7 +52,8 @@
     "stream-chunker": "^1.2.8",
     "typeorm": "^0.3.6",
     "youtube-search-without-api-key": "^1.0.7",
-    "ytdl-core": "^4.11.0"
+    "ytdl-core": "^4.11.0",
+    "axios": "^0.27.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
