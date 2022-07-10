@@ -1,6 +1,6 @@
 import { setLoading, unSetLoading } from '../feedback/actions'
 import axios from 'axios'
-import { apiPaths } from '../../constants/apiPaths'
+import { apiPaths } from '../../constants/api.paths'
 import { INVALIDATE_LESSONS, SET_LESSONS } from './action.types'
 
 

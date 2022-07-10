@@ -7,6 +7,10 @@ export const apiPaths = {
     path: '/api/auth/login',
     method: 'post'
   },
+  thirdPartyLoginApi: {
+    path: '/api/auth/third-party',
+    method: 'post'
+  },
   registerApi: {
     path: '/api/auth/register',
     method: 'post'

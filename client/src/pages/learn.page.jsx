@@ -16,7 +16,7 @@ const LearnPage = () => {
   }, [lessons, dispatch])
 
   const showSeparator = (idx, lesson) => (
-    ((idx - 1 !== lesson.length - 1) && (!lesson.isDone && lessons[idx - 1].isDone))
+    ((idx - 1 >= 0) && (!lesson.isDone && lessons[idx - 1].isDone)) || (idx === 0 && !lesson.isDone)
   )
 
   return (

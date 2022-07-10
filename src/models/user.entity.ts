@@ -4,15 +4,15 @@ import { UserLessons } from './user-lessons.entity'
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
-  @Column({
-    unique: true
-  })
+  @Column()
   firstName: string;
 
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({
+    unique: true
+  })
   email: string;
 
   @Column()

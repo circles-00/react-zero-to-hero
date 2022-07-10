@@ -11,12 +11,10 @@ import { Redirect, Route, Switch } from 'react-router'
 import AuthRoute from './guards/auth/auth.route'
 import { useSelector } from 'react-redux'
 import Loader from './components/common/loader'
-import NavigationAuthenticated from './components/common/navigation.authenticated'
-import { isFalseState, isTrueState } from './constants/state.enum'
+import { isTrueState } from './constants/state.enum'
 
 function App() {
   const {
-    auth: { isAuthenticated },
     feedback: { isLoading },
   } = useSelector(state => state)
 
@@ -40,7 +38,7 @@ function App() {
 
   return (
     <>
-      {isFalseState(isAuthenticated)? <Navigation /> : <NavigationAuthenticated />}
+      <Navigation />
       <Switch>
         {pagePaths.publicRoutes.map(route => <Route key={route.path} exact path={route.path}
                                                     render={() => isTrueState(isLoading) ? <Loader show={true} /> : route.element }></Route>)}

@@ -3,12 +3,12 @@ import { UsersService } from '../../services/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../../models/user.entity';
 import { compareSync } from 'bcryptjs';
-import { Connection, QueryRunner, Repository } from 'typeorm'
-import { CreateUserDto } from '../../dtos/user.dto'
+import { Connection, Repository } from 'typeorm'
 import { PostgresErrorCode } from '../../database/constraints'
 import { UserAlreadyExistException } from '../../exceptions/user-already-exists.exception'
 import { RegistrationDto } from '../../dtos/registration.dto'
 import { InjectRepository } from '@nestjs/typeorm'
+import { IThirdPartyLoginPayload } from '../../common/interfaces/types'
 
 @Injectable()
 export class AuthService {
@@ -37,10 +37,13 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = { id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email  };
+    return this.getAccessToken(user)
+  }
+
+  getAccessToken({ id, firstName, lastName, email }: User) {
     return {
-      access_token: this.jwtService.sign(payload),
-    };
+      accessToken: this.jwtService.sign({ id, firstName, lastName, email })
+    }
   }
 
   async registration(registrationDto: RegistrationDto): Promise<User> {
@@ -70,5 +73,20 @@ export class AuthService {
     }
 
     return user;
+  }
+
+  async thirdPartyLogin(payload: IThirdPartyLoginPayload) {
+    const { email } = payload
+
+    const userExists = await this.usersRepository.findOne({
+      where: {
+        email
+      }
+    })
+
+    if (userExists) return this.getAccessToken(userExists)
+
+    const createdUser = await this.usersRepository.save({ ...payload, password: '', googleId: payload.externalId })
+    return this.getAccessToken(createdUser)
   }
 }
