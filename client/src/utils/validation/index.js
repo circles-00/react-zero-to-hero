@@ -78,9 +78,7 @@ const verifyRegisterInformation = ({
     errors.password =
       'Password must have minimum 8 characters, and at least one number'
 
-  if (
-    !Crypto.timingSafeEqual(Buffer.from(password), Buffer.from(confirmPassword))
-  )
+  if (password !== confirmPassword)
     errors.confirmPassword = 'Passwords do not match'
 
   if (Object.values(errors).length === 0) isValid = true
