@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common'
 import { UsersService } from '../../services/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../../models/user.entity';
@@ -77,6 +77,7 @@ export class AuthService {
 
   async thirdPartyLogin(payload: IThirdPartyLoginPayload) {
     const { email } = payload
+    if(!email) throw new Error('Invalid payload')
 
     const userExists = await this.usersRepository.findOne({
       where: {
@@ -86,7 +87,7 @@ export class AuthService {
 
     if (userExists) return this.getAccessToken(userExists)
 
-    const createdUser = await this.usersRepository.save({ ...payload, password: '', googleId: payload.externalId })
+    const createdUser = await this.usersRepository.save({ ...payload, password: '' })
     return this.getAccessToken(createdUser)
   }
 }

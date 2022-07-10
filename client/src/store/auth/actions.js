@@ -3,7 +3,6 @@ import axios from 'axios';
 import {apiPaths} from '../../constants/api.paths';
 import {setAuthToken} from '../../utils/auth';
 import { setLoading, unSetLoading } from '../feedback/actions'
-import { ThirdPartyLoginEnum } from '../../constants/third.party.login.enum'
 
 export const setIsAuthenticated = (payload) => ({
   type: SET_IS_AUTHENTICATED,
@@ -71,12 +70,12 @@ export const getUserInfo = () => async dispatch => {
   }
 };
 
-export const loginWithGoogle = (authCode) => async dispatch => {
+export const thirdPartyLogin = (authCode, method) => async dispatch => {
   try {
     dispatch(setLoading())
     const { data: { accessToken } } = await axios[apiPaths.thirdPartyLoginApi.method](apiPaths.thirdPartyLoginApi.path, {
       token: authCode,
-      method: ThirdPartyLoginEnum.GOOGLE,
+      method,
     })
     dispatch(authUserWithToken({ accessToken }))
     dispatch(getUserInfo())

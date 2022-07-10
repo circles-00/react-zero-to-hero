@@ -16,10 +16,13 @@ import { Public } from '../../decorators/public.decorator'
 import { ThirdPartyLoginDto } from '../dtos/third-party-login.dto'
 import { GoogleAuthService } from '../services/google.auth.service'
 import { IThirdPartyLoginPayload, thirdPartyLoginMethodType } from '../../common/interfaces/types'
+import { GithubAuthService } from '../services/github.auth.service'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService, private googleAuthService: GoogleAuthService) {}
+  constructor(private authService: AuthService, private readonly googleAuthService: GoogleAuthService,
+    private readonly githubAuthService: GithubAuthService) {
+  }
 
   @Post("register")
   @HttpCode(HttpStatus.CREATED)
@@ -62,7 +65,7 @@ export class AuthController {
       return this.googleAuthService
 
     case 'GITHUB':
-      // return gitHub service
+      return this.githubAuthService
     case 'FACEBOOK':
       // return facebook service
     }

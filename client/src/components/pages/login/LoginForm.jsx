@@ -50,8 +50,15 @@ const LoginForm = () => {
     setPassword(event.target.value);
   };
 
+  const isGithubEvent = (event) => (
+    event.nativeEvent.submitter.className.includes('github-button')
+  )
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Workaround
+    if(isGithubEvent(event)) return
+
     const {isValid, errors} = verifyLoginInformation({email, password});
     if (!isValid) {
       setErrors(errors);

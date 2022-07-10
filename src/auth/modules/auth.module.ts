@@ -11,6 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { User } from '../../models/user.entity'
 import { UsersService } from '../../services/users.service'
 import { GoogleAuthService } from '../services/google.auth.service'
+import { GithubAuthService } from '../services/github.auth.service'
 
 @Module({
   imports: [
@@ -22,8 +23,8 @@ import { GoogleAuthService } from '../services/google.auth.service'
     }),
     TypeOrmModule.forFeature([User])
   ],
-  providers: [AuthService, UsersService, LocalStrategy, JwtStrategy, GoogleAuthService],
+  providers: [AuthService, UsersService, LocalStrategy, JwtStrategy, GoogleAuthService, GithubAuthService],
   controllers: [AuthController],
-  exports: [AuthService, UsersService, GoogleAuthService],
+  exports: [AuthService, UsersService, GoogleAuthService, GithubAuthService],
 })
 export class AuthModule {}

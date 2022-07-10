@@ -157,3 +157,11 @@ footer {
   transform: scale(1.1);
   opacity: 0.9;
 }
+
+.github-button {
+  margin-top: auto!important;
+  height: 100%!important;
+  border-radius: initial!important;
+  width: auto!important;
+  background-color: transparent!important;
+}

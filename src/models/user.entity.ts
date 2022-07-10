@@ -23,6 +23,16 @@ export class User extends BaseEntity {
   })
   googleId: string;
 
+  @Column({
+    nullable: true
+  })
+  githubId: string;
+
+  @Column({
+    nullable: true
+  })
+  facebookId: string;
+
   @OneToMany(() => UserLessons, userLessons => userLessons.user)
   userLessons: UserLessons[]
 }

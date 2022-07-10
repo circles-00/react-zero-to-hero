@@ -1,38 +1,38 @@
 import { Injectable } from '@nestjs/common'
 import { OAuth2Client } from 'google-auth-library'
 
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
+const { GOOGLE_CLIENT_ID: clientId, GOOGLE_CLIENT_SECRET: clientSecret } = process.env
 
 @Injectable()
 export class GoogleAuthService {
+  private readonly googleClient
   constructor() {
-  }
-
-  async getPayloadFromToken(googleAuthCode: string) {
-    const googleClient = new OAuth2Client({
-      clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+    this.googleClient = new OAuth2Client({
+      clientId,
+      clientSecret,
       // This line is very important, notice 'postmessage'
       redirectUri: 'postmessage',
     });
+  }
 
-    const { tokens: {id_token: googleToken} } = await googleClient.getToken(googleAuthCode)
+  async getPayloadFromToken(googleAuthCode: string) {
+    const { tokens: {id_token: googleToken} } = await this.googleClient.getToken(googleAuthCode)
 
-    const ticket = await googleClient.verifyIdToken({
+    const ticket = await this.googleClient.verifyIdToken({
       idToken: googleToken,
-      audience: GOOGLE_CLIENT_ID
+      audience: clientId
     })
 
     const payload = ticket.getPayload()
 
-    const { name, email, sub: externalId } = payload
+    const { name, email, sub: googleId } = payload
     const [firstName, lastName] = name.split(' ')
 
     return {
       firstName,
-      lastName,
+      lastName: lastName || '',
       email: email,
-      externalId
+      googleId
     }
   }
 
