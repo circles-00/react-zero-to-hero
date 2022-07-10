@@ -1,5 +1,3 @@
-const generateRangeArray = (maxValue) => (
-  [...Array(maxValue).keys()]
-)
+const generateRangeArray = (maxValue) => [...Array(maxValue).keys()]
 
 export { generateRangeArray }

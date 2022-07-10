@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 const reduxDevToolsCompose =
   typeof window !== 'undefined'
     ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']
-: compose
+    : compose
 
 const middlewares = [thunk]
 const composeMethod =

@@ -6,17 +6,19 @@ import { Lesson } from '../models/lessons.entity'
 
 @Injectable()
 export class LessonsService {
-  constructor(@InjectRepository(UserLessons) private readonly userLessonRepository: Repository<UserLessons>,
-    @InjectRepository(Lesson) private readonly lessonRepository: Repository<Lesson>,
-  ) {
-  }
+  constructor(
+    @InjectRepository(UserLessons)
+    private readonly userLessonRepository: Repository<UserLessons>,
+    @InjectRepository(Lesson)
+    private readonly lessonRepository: Repository<Lesson>,
+  ) {}
 
-  async findAll({userId}) {
+  async findAll({ userId }) {
     const userLessons = await this.userLessonRepository.find({
       relations: ['user', 'lesson'],
       where: {
-        userId: userId
-      }
+        userId: userId,
+      },
     })
 
     const mutatedUserLessons = userLessons.map(({ isDone, lesson }) => ({
@@ -26,8 +28,17 @@ export class LessonsService {
 
     const lessons = await this.lessonRepository.find({})
 
-    return lessons.filter(lesson => !mutatedUserLessons.some(mutatedUserLesson => mutatedUserLesson.id === lesson.id))
+    return lessons
+      .filter(
+        (lesson) =>
+          !mutatedUserLessons.some(
+            (mutatedUserLesson) => mutatedUserLesson.id === lesson.id,
+          ),
+      )
       .concat(mutatedUserLessons)
-      .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+      .sort(
+        (a, b) =>
+          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+      )
   }
 }

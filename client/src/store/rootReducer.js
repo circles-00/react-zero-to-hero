@@ -6,5 +6,5 @@ import lessonsReducer from './lessons/reducer'
 export const rootReducer = combineReducers({
   auth: authReducer,
   feedback: feedbackReducer,
-  lessons: lessonsReducer
+  lessons: lessonsReducer,
 })

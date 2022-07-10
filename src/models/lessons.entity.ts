@@ -1,15 +1,14 @@
-import { Entity, Column, ManyToMany, OneToMany } from 'typeorm'
-import { BaseEntity } from './base.entity';
-import { User } from './user.entity'
+import { Entity, Column, OneToMany } from 'typeorm'
+import { BaseEntity } from './base.entity'
 import { UserLessons } from './user-lessons.entity'
 
 @Entity({ name: 'lessons' })
 export class Lesson extends BaseEntity {
   @Column()
-  title: string;
+  title: string
 
   @Column()
-  shortDescription: string;
+  shortDescription: string
 
   @Column()
   description: string
@@ -17,6 +16,6 @@ export class Lesson extends BaseEntity {
   @Column()
   difficulty: number
 
-  @OneToMany(() => UserLessons, userLessons => userLessons.lesson)
+  @OneToMany(() => UserLessons, (userLessons) => userLessons.lesson)
   userLessons: UserLessons[]
 }

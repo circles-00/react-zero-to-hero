@@ -1,4 +1,4 @@
-import MainContent from '../components/pages/home/mainContent';
+import MainContent from '../components/pages/home/mainContent'
 
 const HomePage = () => {
   return (
@@ -9,6 +9,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-
-
-

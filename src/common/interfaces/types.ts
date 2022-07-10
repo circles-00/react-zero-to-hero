@@ -8,4 +8,3 @@ export interface IThirdPartyLoginPayload {
 }
 
 export type thirdPartyLoginMethodType = 'GOOGLE' | 'FACEBOOK' | 'GITHUB'
-

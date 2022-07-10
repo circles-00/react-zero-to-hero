@@ -12,11 +12,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: commonStateEnum.TRUE,
       }
-  case SET_IS_LOADING_FALSE:
-    return {
-      ...state,
-      isLoading: commonStateEnum.FALSE,
-    }
+    case SET_IS_LOADING_FALSE:
+      return {
+        ...state,
+        isLoading: commonStateEnum.FALSE,
+      }
     default:
       return state
   }

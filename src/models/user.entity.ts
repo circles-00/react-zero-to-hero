@@ -1,38 +1,38 @@
-import { Entity, Column, ManyToMany, OneToMany } from 'typeorm'
-import { BaseEntity } from './base.entity';
+import { Entity, Column, OneToMany } from 'typeorm'
+import { BaseEntity } from './base.entity'
 import { UserLessons } from './user-lessons.entity'
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
   @Column()
-  firstName: string;
+  firstName: string
 
   @Column()
-  lastName: string;
+  lastName: string
 
   @Column({
-    unique: true
+    unique: true,
   })
-  email: string;
+  email: string
 
   @Column()
-  password?: string;
+  password?: string
 
   @Column({
-    nullable: true
+    nullable: true,
   })
-  googleId: string;
+  googleId: string
 
   @Column({
-    nullable: true
+    nullable: true,
   })
-  githubId: string;
+  githubId: string
 
   @Column({
-    nullable: true
+    nullable: true,
   })
-  facebookId: string;
+  facebookId: string
 
-  @OneToMany(() => UserLessons, userLessons => userLessons.user)
+  @OneToMany(() => UserLessons, (userLessons) => userLessons.user)
   userLessons: UserLessons[]
 }

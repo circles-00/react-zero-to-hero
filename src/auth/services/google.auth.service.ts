@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { OAuth2Client } from 'google-auth-library'
 
-const { GOOGLE_CLIENT_ID: clientId, GOOGLE_CLIENT_SECRET: clientSecret } = process.env
+const { GOOGLE_CLIENT_ID: clientId, GOOGLE_CLIENT_SECRET: clientSecret } =
+  process.env
 
 @Injectable()
 export class GoogleAuthService {
@@ -12,15 +13,17 @@ export class GoogleAuthService {
       clientSecret,
       // This line is very important, notice 'postmessage'
       redirectUri: 'postmessage',
-    });
+    })
   }
 
   async getPayloadFromToken(googleAuthCode: string) {
-    const { tokens: {id_token: googleToken} } = await this.googleClient.getToken(googleAuthCode)
+    const {
+      tokens: { id_token: googleToken },
+    } = await this.googleClient.getToken(googleAuthCode)
 
     const ticket = await this.googleClient.verifyIdToken({
       idToken: googleToken,
-      audience: clientId
+      audience: clientId,
     })
 
     const payload = ticket.getPayload()
@@ -32,8 +35,7 @@ export class GoogleAuthService {
       firstName,
       lastName: lastName || '',
       email: email,
-      googleId
+      googleId,
     }
   }
-
 }

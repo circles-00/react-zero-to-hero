@@ -1,22 +1,22 @@
 export const apiPaths = {
   getUserInfoApi: {
     path: '/api/auth/profile',
-    method: 'get'
+    method: 'get',
   },
   loginApi: {
     path: '/api/auth/login',
-    method: 'post'
+    method: 'post',
   },
   thirdPartyLoginApi: {
     path: '/api/auth/third-party',
-    method: 'post'
+    method: 'post',
   },
   registerApi: {
     path: '/api/auth/register',
-    method: 'post'
+    method: 'post',
   },
   fetchLessonsApi: {
     path: '/api/lessons',
-    method: 'get'
+    method: 'get',
   },
 }

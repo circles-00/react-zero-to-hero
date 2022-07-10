@@ -18,14 +18,36 @@ import PropTypes from 'prop-types'
  */
 
 const CustomInput = ({
-  name, placeholder, type, value, onChange, errors, inputStyle, inputClassName, label, labelStyle, labelClassName,
+  name,
+  placeholder,
+  type,
+  value,
+  onChange,
+  errors,
+  inputStyle,
+  inputClassName,
+  label,
+  labelStyle,
+  labelClassName,
 }) => {
   return (
     <>
-      {label && <label style={labelStyle} className={labelClassName}>{label}</label>} <br />
-      <input name={name} placeholder={placeholder} type={type} value={value}
-             onChange={onChange} style={inputStyle} className={inputClassName}  />
-      {errors && <span className='errors'>{errors}</span>}
+      {label && (
+        <label style={labelStyle} className={labelClassName}>
+          {label}
+        </label>
+      )}{' '}
+      <br />
+      <input
+        name={name}
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        onChange={onChange}
+        style={inputStyle}
+        className={inputClassName}
+      />
+      {errors && <span className="errors">{errors}</span>}
     </>
   )
 }
@@ -41,7 +63,7 @@ CustomInput.propTypes = {
   inputClassName: PropTypes.string,
   label: PropTypes.string,
   labelStyle: PropTypes.object,
-  labelClassName: PropTypes.string
+  labelClassName: PropTypes.string,
 }
 
 export default CustomInput

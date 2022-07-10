@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../models/user.entity';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { User } from '../models/user.entity'
 import { QueryRunner, Repository } from 'typeorm'
 import { CreateUserDto } from '../dtos/user.dto'
 
@@ -13,13 +13,13 @@ export class UsersService {
 
   async createUser(
     createUserDto: CreateUserDto,
-    queryRunner: QueryRunner
+    queryRunner: QueryRunner,
   ): Promise<User> {
     const user: User = this.usersRepository.create({
       ...createUserDto,
-    });
+    })
 
-    return queryRunner.manager.save(user);
+    return queryRunner.manager.save(user)
   }
 
   async findOne(email: string): Promise<User | undefined> {
@@ -27,6 +27,6 @@ export class UsersService {
       where: {
         email,
       },
-    });
+    })
   }
 }

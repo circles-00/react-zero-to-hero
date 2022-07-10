@@ -7,6 +7,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './store'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
+
 const { REACT_APP_GOOGLE_CLIENT_ID: clientId } = process.env
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

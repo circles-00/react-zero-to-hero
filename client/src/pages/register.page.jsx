@@ -13,20 +13,21 @@ import useAuthRedirect from '../hooks/useAuthRedirect'
 const RegisterPage = () => {
   const { isAuthenticated } = useAuthRedirect()
 
-  return (
-    isFalseState(isAuthenticated) ? <section className="container-lg d-flex justify-content-center flex-column text-center login-page-container">
-      <Title/>
+  return isFalseState(isAuthenticated) ? (
+    <section className="container-lg d-flex justify-content-center flex-column text-center login-page-container">
+      <Title />
       <RegisterForm />
-    </section> : null
-  )
-};
-
+    </section>
+  ) : null
+}
 
 const Title = () => (
-  <p>A world class course for ReactJS! <br />
-    Join to get personalized lessons, practice exams, certification and many more! <br />
-    We’ll save all of your progress.</p>
-);
+  <p>
+    A world class course for ReactJS! <br />
+    Join to get personalized lessons, practice exams, certification and many
+    more! <br />
+    We’ll save all of your progress.
+  </p>
+)
 
-
-export default RegisterPage;
+export default RegisterPage

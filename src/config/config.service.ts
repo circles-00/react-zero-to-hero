@@ -1,38 +1,38 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Logger, Injectable } from '@nestjs/common';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
+import { Logger, Injectable } from '@nestjs/common'
+import { DataSource, DataSourceOptions } from 'typeorm'
 
-import { config } from 'dotenv';
+import { config } from 'dotenv'
 
-config();
+config()
 
 @Injectable()
 class ConfigService {
-  private readonly logger = new Logger(ConfigService.name);
+  private readonly logger = new Logger(ConfigService.name)
 
   constructor(private env: { [k: string]: string | undefined }) {}
 
   private getValue(key: string, throwOnMissing = true): string {
-    const value = this.env[key];
+    const value = this.env[key as string]
     if (!value && throwOnMissing) {
-      throw new Error(`config error - missing env.${key}`);
+      throw new Error(`config error - missing env.${key}`)
     }
 
-    return value;
+    return value
   }
 
   public ensureValues(keys: string[]) {
-    keys.forEach((k) => this.getValue(k, true));
-    return this;
+    keys.forEach((k) => this.getValue(k, true))
+    return this
   }
 
   public getPort() {
-    return this.getValue('PORT', true);
+    return this.getValue('PORT', true)
   }
 
   public isProduction() {
-    const mode = this.getValue('MODE', false);
-    return mode != 'development';
+    const mode = this.getValue('MODE', false)
+    return mode != 'development'
   }
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
@@ -49,16 +49,19 @@ class ConfigService {
 
       entities: ['src/models/**/*{.js,.ts}'],
       migrations: ['src/database/migrations/**/*{.js,.ts}'],
-      subscribers: ['src/subscribers/**/*{.js,.ts}', 'src/auth/subscribers/**/*{.js,.ts}'],
+      subscribers: [
+        'src/subscribers/**/*{.js,.ts}',
+        'src/auth/subscribers/**/*{.js,.ts}',
+      ],
 
-      ssl: this.isProduction()
-    };
+      ssl: this.isProduction(),
+    }
   }
 
   public getDataSource(): DataSource {
     return new DataSource({
       ...(this.getTypeOrmConfig() as DataSourceOptions),
-    });
+    })
   }
 }
 
@@ -68,6 +71,6 @@ const configService = new ConfigService(process.env).ensureValues([
   'DB_USER',
   'DB_PASSWORD',
   'DB_DATABASE',
-]);
+])
 
-export { configService };
+export { configService }

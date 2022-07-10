@@ -1,6 +1,10 @@
 import './App.css'
 import { useEffect } from 'react'
-import { authUserWithToken, getUserInfo, setNotAuthenticated } from './store/auth/actions'
+import {
+  authUserWithToken,
+  getUserInfo,
+  setNotAuthenticated,
+} from './store/auth/actions'
 import jwtDecode from 'jwt-decode'
 import { setAuthToken } from './utils/auth'
 import { store } from './store'
@@ -16,7 +20,7 @@ import { isTrueState } from './constants/state.enum'
 function App() {
   const {
     feedback: { isLoading },
-  } = useSelector(state => state)
+  } = useSelector((state) => state)
 
   useEffect(() => {
     if (localStorage.jwtToken) {
@@ -35,21 +39,29 @@ function App() {
     }
   }, [])
 
-
   return (
     <>
       <Navigation />
       <Switch>
-        {pagePaths.publicRoutes.map(route => <Route key={route.path} exact path={route.path}
-                                                    render={() => isTrueState(isLoading) ? <Loader show={true} /> : route.element }></Route>)}
-        {pagePaths.privateRoutes.map(route =>
+        {pagePaths.publicRoutes.map((route) => (
+          <Route
+            key={route.path}
+            exact
+            path={route.path}
+            render={() =>
+              isTrueState(isLoading) ? <Loader show={true} /> : route.element
+            }
+          ></Route>
+        ))}
+        {pagePaths.privateRoutes.map((route) => (
           <AuthRoute
             key={route.path}
             redirectTo={loginPage.path}
             exact
             path={route.path}
             component={route.component}
-          />)}
+          />
+        ))}
         <Redirect to={{ pathname: '/' }} />
       </Switch>
       <Footer />

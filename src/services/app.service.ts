@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../models/user.entity';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { User } from '../models/user.entity'
+import { Repository } from 'typeorm'
 @Injectable()
 export class AppService {
   constructor(
@@ -10,6 +10,6 @@ export class AppService {
   ) {}
 
   getHello(): any {
-    return this.usersRepository.find();
+    return this.usersRepository.find()
   }
 }

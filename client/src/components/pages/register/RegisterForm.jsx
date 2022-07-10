@@ -17,13 +17,17 @@ import { isTrueState } from '../../../constants/state.enum'
  */
 
 const RegisterForm = () => {
-  const dispatch = useDispatch(), history = useHistory(), {
-    auth: {
-      errors: authErrors,
-      isAuthenticated,
-    },
-  } = useSelector(state => state), [firstName, setFirstName] = useState(''), [lastName, setLastName] = useState(''), [email, setEmail] = useState(''), [password, setPassword] = useState(''), [confirmPassword, setConfirmPassword] = useState(''), [errors, setErrors] = useState({})
-
+  const dispatch = useDispatch(),
+    history = useHistory(),
+    {
+      auth: { errors: authErrors, isAuthenticated },
+    } = useSelector((state) => state),
+    [firstName, setFirstName] = useState(''),
+    [lastName, setLastName] = useState(''),
+    [email, setEmail] = useState(''),
+    [password, setPassword] = useState(''),
+    [confirmPassword, setConfirmPassword] = useState(''),
+    [errors, setErrors] = useState({})
 
   useEffect(() => {
     if (Object.values(authErrors).length > 0) {
@@ -64,7 +68,13 @@ const RegisterForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const { isValid, errors } = verifyRegisterInformation({ firstName, lastName, email, password, confirmPassword })
+    const { isValid, errors } = verifyRegisterInformation({
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    })
     if (!isValid) {
       setErrors(errors)
     } else {
@@ -74,13 +84,23 @@ const RegisterForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}
-          className='container-lg d-flex justify-content-center flex-column text-center login-form-container'>
-      <LocalRegisterForm firstName={firstName} lastName={lastName} email={email} password={password}
-                         confirmPassword={confirmPassword} handleOnFirstNameChange={handleOnFirstNameChange}
-                         handleOnLastNameChange={handleOnLastNameChange} handleOnEmailChange={handleOnEmailChange}
-                         handleOnPasswordChange={handleOnPasswordChange}
-                         handleOnConfirmPasswordChange={handleOnConfirmPasswordChange} errors={errors} />
+    <form
+      onSubmit={handleSubmit}
+      className="container-lg d-flex justify-content-center flex-column text-center login-form-container"
+    >
+      <LocalRegisterForm
+        firstName={firstName}
+        lastName={lastName}
+        email={email}
+        password={password}
+        confirmPassword={confirmPassword}
+        handleOnFirstNameChange={handleOnFirstNameChange}
+        handleOnLastNameChange={handleOnLastNameChange}
+        handleOnEmailChange={handleOnEmailChange}
+        handleOnPasswordChange={handleOnPasswordChange}
+        handleOnConfirmPasswordChange={handleOnConfirmPasswordChange}
+        errors={errors}
+      />
       <SeparatorLine />
       <ThirdPartyLogin />
     </form>

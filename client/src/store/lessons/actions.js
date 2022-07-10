@@ -3,20 +3,21 @@ import axios from 'axios'
 import { apiPaths } from '../../constants/api.paths'
 import { INVALIDATE_LESSONS, SET_LESSONS } from './action.types'
 
-
-export const setLessons = payload => ({
+export const setLessons = (payload) => ({
   type: SET_LESSONS,
-  payload
+  payload,
 })
 
 export const invalidateLessonsState = () => ({
-  type: INVALIDATE_LESSONS
+  type: INVALIDATE_LESSONS,
 })
 
-export const fetchLessons = () => async dispatch => {
+export const fetchLessons = () => async (dispatch) => {
   try {
     dispatch(setLoading())
-    const { data: lessons} = await axios[apiPaths.fetchLessonsApi.method](apiPaths.fetchLessonsApi.path)
+    const { data: lessons } = await axios[apiPaths.fetchLessonsApi.method](
+      apiPaths.fetchLessonsApi.path,
+    )
 
     dispatch(setLessons(lessons))
     dispatch(unSetLoading())

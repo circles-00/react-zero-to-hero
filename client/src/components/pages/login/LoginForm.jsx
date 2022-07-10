@@ -1,12 +1,12 @@
-import LocalLoginForm from './LocalLoginForm';
-import ThirdPartyLogin from './ThirdPartyLogin';
-import {useDispatch, useSelector} from 'react-redux';
-import {useEffect, useState} from 'react';
-import {login} from '../../../store/auth/actions';
-import './style.css';
-import {verifyLoginInformation} from '../../../utils/validation';
+import LocalLoginForm from './LocalLoginForm'
+import ThirdPartyLogin from './ThirdPartyLogin'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { login } from '../../../store/auth/actions'
+import './style.css'
+import { verifyLoginInformation } from '../../../utils/validation'
 import { useHistory } from 'react-router'
-import {learnPage} from '../../../config/routes';
+import { learnPage } from '../../../config/routes'
 import { isTrueState } from '../../../constants/state.enum'
 
 /**
@@ -18,75 +18,82 @@ import { isTrueState } from '../../../constants/state.enum'
  */
 
 const LoginForm = () => {
-
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const history = useHistory()
 
-  const { auth: {errors: authErrors,  isAuthenticated}} = useSelector(state => state)
+  const {
+    auth: { errors: authErrors, isAuthenticated },
+  } = useSelector((state) => state)
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    if(Object.values(authErrors).length > 0) {
+    if (Object.values(authErrors).length > 0) {
       setErrors(authErrors)
     }
   }, [authErrors])
 
   useEffect(() => {
-    if(isTrueState(isAuthenticated)) {
+    if (isTrueState(isAuthenticated)) {
       history.push(learnPage.path)
     }
   }, [isAuthenticated, history])
 
   const handleOnEmailChange = (event) => {
-    setErrors({...errors, email: null})
-    setEmail(event.target.value);
-  };
+    setErrors({ ...errors, email: null })
+    setEmail(event.target.value)
+  }
 
   const handleOnPasswordChange = (event) => {
-    setErrors({...errors, password: null})
-    setPassword(event.target.value);
-  };
+    setErrors({ ...errors, password: null })
+    setPassword(event.target.value)
+  }
 
-  const isGithubEvent = (event) => (
+  const isGithubEvent = (event) =>
     event.nativeEvent.submitter.className.includes('github-button')
-  )
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     // Workaround
-    if(isGithubEvent(event)) return
+    if (isGithubEvent(event)) return
 
-    const {isValid, errors} = verifyLoginInformation({email, password});
+    const { isValid, errors } = verifyLoginInformation({ email, password })
     if (!isValid) {
-      setErrors(errors);
+      setErrors(errors)
     } else {
-      setErrors({});
-      dispatch(login({email, password}));
+      setErrors({})
+      dispatch(login({ email, password }))
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit}
-          className="container-lg d-flex justify-content-center flex-column text-center login-form-container">
-      <LocalLoginForm email={email} password={password} handleOnEmailChange={handleOnEmailChange}
-                      handleOnPasswordChange={handleOnPasswordChange} errors={errors} />
-      <SeparatorLine/>
-      <ThirdPartyLogin/>
+    <form
+      onSubmit={handleSubmit}
+      className="container-lg d-flex justify-content-center flex-column text-center login-form-container"
+    >
+      <LocalLoginForm
+        email={email}
+        password={password}
+        handleOnEmailChange={handleOnEmailChange}
+        handleOnPasswordChange={handleOnPasswordChange}
+        errors={errors}
+      />
+      <SeparatorLine />
+      <ThirdPartyLogin />
     </form>
-  );
-};
+  )
+}
 
 const SeparatorLine = () => {
   return (
     <>
-      <hr/>
+      <hr />
       <span>or</span>
-      <hr style={{marginTop: '5px'}}/>
+      <hr style={{ marginTop: '5px' }} />
     </>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

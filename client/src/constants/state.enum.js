@@ -6,17 +6,15 @@ const commonStateEnum = {
   FAILURE: 4,
 }
 
-const isInitialState = (variableToCheck) => (
+const isInitialState = (variableToCheck) =>
   variableToCheck === commonStateEnum.INITIAL_STATE
-)
 
-const isTrueState = (variableToCheck) => (
-  variableToCheck === commonStateEnum.TRUE && variableToCheck !== commonStateEnum.INITIAL_STATE
-)
+const isTrueState = (variableToCheck) =>
+  variableToCheck === commonStateEnum.TRUE &&
+  variableToCheck !== commonStateEnum.INITIAL_STATE
 
-const isFalseState = (variableToCheck) => (
-  variableToCheck === commonStateEnum.FALSE && variableToCheck !== commonStateEnum.INITIAL_STATE
-)
-
+const isFalseState = (variableToCheck) =>
+  variableToCheck === commonStateEnum.FALSE &&
+  variableToCheck !== commonStateEnum.INITIAL_STATE
 
 export { commonStateEnum, isInitialState, isTrueState, isFalseState }

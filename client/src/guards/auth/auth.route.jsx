@@ -10,8 +10,8 @@ import { isTrueState } from '../../constants/state.enum'
 function AuthRoute({ path, component: Component, ...rest }) {
   const {
     feedback: { isLoading },
-    auth: { isAuthenticated }
-  } = useSelector(state => state)
+    auth: { isAuthenticated },
+  } = useSelector((state) => state)
   const dispatch = useDispatch()
   const location = useLocation()
 
@@ -19,7 +19,7 @@ function AuthRoute({ path, component: Component, ...rest }) {
     if (localStorage.jwtToken && location.pathname === path) {
       const decoded = jwt_decode(localStorage.jwtToken.split(' ')[1])
       if (decoded.exp && decoded.exp < Date.now() / 1000) {
-          // TODO: Get Access Token
+        // TODO: Get Access Token
       }
       dispatch(unSetLoading())
     }

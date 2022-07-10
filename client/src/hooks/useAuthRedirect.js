@@ -5,15 +5,17 @@ import { learnPage } from '../config/routes'
 import { useHistory } from 'react-router'
 
 const useAuthRedirect = () => {
-  const history = useHistory();
+  const history = useHistory()
 
-  const {auth: {isAuthenticated}} = useSelector(state => state);
+  const {
+    auth: { isAuthenticated },
+  } = useSelector((state) => state)
 
   useEffect(() => {
     if (isTrueState(isAuthenticated)) {
-      history.push(learnPage.path);
+      history.push(learnPage.path)
     }
-  }, [isAuthenticated, history]);
+  }, [isAuthenticated, history])
 
   return { isAuthenticated }
 }
