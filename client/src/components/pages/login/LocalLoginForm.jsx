@@ -6,26 +6,21 @@ import BottomLoginSubmit from '../../common/bottom-login-submit'
  * @component
  * Returns form body for local auth strategy
  * @param email
- * @param password
- * @param handleOnEmailChange
- * @param handleOnPasswordChange
  * @param errors
  * @returns {JSX.Element}
  *
  */
 
 const LocalLoginForm = ({
-  email,
-  password,
-  handleOnEmailChange,
-  handleOnPasswordChange,
+  inputState = { email: '', password: '' },
+  onInputChange,
   errors,
 }) => {
   return (
     <>
       <CustomInput
-        value={email}
-        onChange={handleOnEmailChange}
+        value={inputState.email}
+        onChange={onInputChange}
         errors={errors.email}
         type="text"
         name="email"
@@ -35,8 +30,8 @@ const LocalLoginForm = ({
       />
 
       <CustomInput
-        value={password}
-        onChange={handleOnPasswordChange}
+        value={inputState.password}
+        onChange={onInputChange}
         errors={errors.password}
         type="password"
         name="password"

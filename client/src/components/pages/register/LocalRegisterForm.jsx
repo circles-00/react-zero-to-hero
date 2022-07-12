@@ -8,31 +8,20 @@ import BottomLoginSubmit from '../../common/bottom-login-submit'
  * @component
  * Returns form body for local auth strategy
  * @param firstName
- * @param lastName
- * @param email
- * @param password
- * @param confirmPassword
- * @param handleOnFirstNameChange
- * @param handleOnLastNameChange
- * @param handleOnEmailChange
- * @param handleOnPasswordChange
- * @param handleOnConfirmPasswordChange
  * @param errors
  * @returns {JSX.Element}
  *
  */
 
 const LocalRegisterForm = ({
-  firstName,
-  lastName,
-  email,
-  password,
-  confirmPassword,
-  handleOnFirstNameChange,
-  handleOnLastNameChange,
-  handleOnEmailChange,
-  handleOnPasswordChange,
-  handleOnConfirmPasswordChange,
+  inputState = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  },
+  onInputChange,
   errors = {
     firstName: null,
     lastName: null,
@@ -44,8 +33,8 @@ const LocalRegisterForm = ({
   return (
     <>
       <CustomInput
-        value={firstName}
-        onChange={handleOnFirstNameChange}
+        value={inputState.firstName}
+        onChange={onInputChange}
         errors={errors.firstName}
         type="text"
         name="firstName"
@@ -55,8 +44,8 @@ const LocalRegisterForm = ({
       />
 
       <CustomInput
-        value={lastName}
-        onChange={handleOnLastNameChange}
+        value={inputState.lastName}
+        onChange={onInputChange}
         errors={errors.lastName}
         type="text"
         name="lastName"
@@ -66,8 +55,8 @@ const LocalRegisterForm = ({
       />
 
       <CustomInput
-        value={email}
-        onChange={handleOnEmailChange}
+        value={inputState.email}
+        onChange={onInputChange}
         errors={errors.email}
         type="text"
         name="email"
@@ -77,8 +66,8 @@ const LocalRegisterForm = ({
       />
 
       <CustomInput
-        value={password}
-        onChange={handleOnPasswordChange}
+        value={inputState.password}
+        onChange={onInputChange}
         errors={errors.password}
         type="password"
         name="password"
@@ -88,11 +77,11 @@ const LocalRegisterForm = ({
       />
 
       <CustomInput
-        value={confirmPassword}
-        onChange={handleOnConfirmPasswordChange}
+        value={inputState.confirmPassword}
+        onChange={onInputChange}
         errors={errors.confirmPassword}
         type="password"
-        name="password"
+        name="confirmPassword"
         placeholder="Confirm Password"
         label="Confirm Password"
         labelStyle={{ textAlign: 'start', marginTop: '10px' }}

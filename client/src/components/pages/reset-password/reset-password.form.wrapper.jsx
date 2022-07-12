@@ -15,6 +15,7 @@ import {
   setResetPasswordErrors,
 } from '../../../store/auth/actions'
 import ResetPasswordForm from './reset-password.form'
+import useForm from '../../../hooks/useForm'
 
 const ResetPasswordFormWrapper = ({ token }) => {
   const dispatch = useDispatch()
@@ -23,12 +24,11 @@ const ResetPasswordFormWrapper = ({ token }) => {
     auth: { resetPasswordErrors },
   } = useSelector((state) => state)
 
-  const [inputState, setInputState] = useState({
+  const { inputState, onInputChange, errors, setErrors } = useForm({
     email: '',
     password: '',
     confirmPassword: '',
   })
-  const [errors, setErrors] = useState({})
   const [isSuccess, setIsSuccess] = useState(commonStateEnum.INITIAL_STATE)
 
   useEffect(() => {
@@ -46,11 +46,6 @@ const ResetPasswordFormWrapper = ({ token }) => {
       dispatch(setResetPasswordErrors(commonStateEnum.INITIAL_STATE))
     }
   }, [resetPasswordErrors])
-
-  const onInputChange = (event) => {
-    setErrors({ ...errors, [event.target.name]: null })
-    setInputState({ ...inputState, [event.target.name]: event.target.value })
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
