@@ -2,12 +2,14 @@ import {
   SET_AUTH_ERRORS,
   SET_IS_AUTHENTICATED,
   SET_NOT_AUTHENTICATED,
+  SET_RESET_PASSWORD_ERRORS,
   SET_USER_INFO,
 } from './action.types'
 import axios from 'axios'
 import { apiPaths } from '../../constants/api.paths'
 import { setAuthToken } from '../../utils/auth'
 import { setLoading, unSetLoading } from '../feedback/actions'
+import { commonStateEnum } from '../../constants/state.enum'
 
 export const setIsAuthenticated = (payload) => ({
   type: SET_IS_AUTHENTICATED,
@@ -108,5 +110,49 @@ export const thirdPartyLogin = (authCode, method) => async (dispatch) => {
   } catch (err) {
     dispatch(unSetLoading())
     console.error(err)
+  }
+}
+
+export const setResetPasswordErrors = (payload) => ({
+  type: SET_RESET_PASSWORD_ERRORS,
+  payload,
+})
+
+export const resetPassword = (email) => async (dispatch) => {
+  try {
+    dispatch(setLoading())
+    await axios[apiPaths.resetPasswordApi.method](
+      apiPaths.resetPasswordApi.path,
+      { email },
+    )
+    dispatch(setResetPasswordErrors(commonStateEnum.SUCCESS))
+    dispatch(unSetLoading())
+  } catch (err) {
+    dispatch(unSetLoading())
+    dispatch(setResetPasswordErrors({ email: err.response.data.message }))
+  }
+}
+
+export const resetPasswordConfirm = (password, token) => async (dispatch) => {
+  try {
+    dispatch(setLoading())
+    const {
+      data: { accessToken },
+    } = await axios[apiPaths.resetPasswordConfirmApi.method](
+      apiPaths.resetPasswordConfirmApi.path,
+      { password },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+
+    dispatch(authUserWithToken({ accessToken }))
+    dispatch(getUserInfo())
+    dispatch(unSetLoading())
+  } catch (err) {
+    dispatch(unSetLoading())
+    dispatch(setResetPasswordErrors({ email: err.response.data.message }))
   }
 }

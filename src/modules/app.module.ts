@@ -8,6 +8,7 @@ import { AuthModule } from '../auth/modules/auth.module'
 import { UsersModule } from './users.module'
 import { ScheduleModule } from '@nestjs/schedule'
 import { LessonsModule } from './lessons.module'
+import { MailModule } from './mail.module'
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { LessonsModule } from './lessons.module'
     AuthModule,
     UsersModule,
     LessonsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

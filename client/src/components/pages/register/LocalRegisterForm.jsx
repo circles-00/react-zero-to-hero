@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import CustomInput from '../../common/input'
+import BottomLoginSubmit from '../../common/bottom-login-submit'
 
 /**
  * TODO: Make this more generic
@@ -97,12 +98,7 @@ const LocalRegisterForm = ({
         labelStyle={{ textAlign: 'start', marginTop: '10px' }}
       />
 
-      <div className="d-flex flex-row justify-content-between">
-        <button className="secondary-color" type="submit">
-          Register
-        </button>
-        <p>Forgot your password?</p>
-      </div>
+      <BottomLoginSubmit buttonTitle="Register" />
     </>
   )
 }

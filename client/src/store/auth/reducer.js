@@ -2,6 +2,7 @@ import {
   SET_AUTH_ERRORS,
   SET_IS_AUTHENTICATED,
   SET_NOT_AUTHENTICATED,
+  SET_RESET_PASSWORD_ERRORS,
   SET_USER_INFO,
 } from './action.types'
 import { commonStateEnum } from '../../constants/state.enum'
@@ -10,6 +11,7 @@ const initialState = {
   isAuthenticated: commonStateEnum.INITIAL_STATE,
   userInfo: {},
   errors: {},
+  resetPasswordErrors: commonStateEnum.INITIAL_STATE,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -37,6 +39,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         errors: action.payload,
+      }
+
+    case SET_RESET_PASSWORD_ERRORS:
+      return {
+        ...state,
+        resetPasswordErrors: action.payload,
       }
 
     default:

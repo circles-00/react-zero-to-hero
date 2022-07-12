@@ -6,7 +6,6 @@ import {
 } from 'typeorm'
 import { User } from '../../models/user.entity'
 import { AuthProvider } from '../providers/auth.provider'
-import * as crypto from 'crypto'
 
 @EventSubscriber()
 export class AuthSubscriber implements EntitySubscriberInterface<User> {
@@ -30,13 +29,7 @@ export class AuthSubscriber implements EntitySubscriberInterface<User> {
   }: UpdateEvent<User>): Promise<void> {
     if (entity.password) {
       const password = await AuthProvider.generateHash(entity.password)
-
-      if (
-        !crypto.timingSafeEqual(
-          Buffer.from(password),
-          Buffer.from(databaseEntity?.password),
-        )
-      ) {
+      if (password !== databaseEntity?.password) {
         entity.password = password
       }
     }

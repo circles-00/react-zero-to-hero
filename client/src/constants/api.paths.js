@@ -15,6 +15,14 @@ export const apiPaths = {
     path: '/api/auth/register',
     method: 'post',
   },
+  resetPasswordApi: {
+    path: '/api/auth/reset-password',
+    method: 'post',
+  },
+  resetPasswordConfirmApi: {
+    path: '/api/auth/reset-password-confirm',
+    method: 'post',
+  },
   fetchLessonsApi: {
     path: '/api/lessons',
     method: 'get',

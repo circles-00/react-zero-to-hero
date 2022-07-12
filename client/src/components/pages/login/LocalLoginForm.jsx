@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import CustomInput from '../../common/input'
+import BottomLoginSubmit from '../../common/bottom-login-submit'
 
 /**
  * @component
@@ -44,12 +45,7 @@ const LocalLoginForm = ({
         labelStyle={{ textAlign: 'start', marginTop: '10px' }}
       />
 
-      <div className="d-flex flex-row justify-content-between">
-        <button className="secondary-color" type="submit">
-          Log In
-        </button>
-        <p>Forgot your password?</p>
-      </div>
+      <BottomLoginSubmit buttonTitle="Log In" />
     </>
   )
 }

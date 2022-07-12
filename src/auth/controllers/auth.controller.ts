@@ -22,6 +22,8 @@ import {
 } from '../../common/interfaces/types'
 import { GithubAuthService } from '../services/github.auth.service'
 import { FacebookAuthService } from '../services/facebook.auth.service'
+import { ResetPasswordDto } from '../dto/reset-password.dto'
+import { ResetPasswordConfirmDto } from '../dto/reset-password-confirm.dto'
 
 @Controller('auth')
 export class AuthController {
@@ -64,6 +66,30 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req) {
     return req.user
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('reset-password')
+  resetPassword(@Body() resetPasswordDto: ResetPasswordDto, @Request() req) {
+    const { host } = req.headers
+    const { email } = resetPasswordDto
+    return this.authService.resetPassword(email, host)
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @Post('reset-password-confirm')
+  async resetPasswordConfirm(
+    @Body() resetPasswordDto: ResetPasswordConfirmDto,
+    @Request() req,
+  ) {
+    const { user } = req
+    const { password } = resetPasswordDto
+    const { raw } = await this.authService.resetPasswordConfirm(user, password)
+    const [updatedUser] = raw
+
+    return this.authService.getAccessToken(updatedUser)
   }
 
   getThirdPartyService(method: thirdPartyLoginMethodType) {

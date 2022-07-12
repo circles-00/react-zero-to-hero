@@ -19,29 +19,55 @@ const validateString = (string, stringName) => {
   return { isValid, errors }
 }
 
-const validateEmailAddress = (email) => {
-  let errors
+const validatePassword = ({ password }) => {
+  let errors = {}
   let isValid = true
 
-  if (isEmpty(email)) errors = 'Email cannot be empty'
-  else if (!isEmail(email)) errors = 'Invalid Email Address'
+  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
+    errors.password =
+      'Password must have minimum 8 characters, and at least one number'
 
-  if (errors) isValid = false
+  if (Object.values(errors).length > 0) isValid = false
+
+  return { isValid, errors }
+}
+
+export const validatePasswords = ({ password, confirmPassword }) => {
+  let errors = {}
+  let isValid = true
+
+  const { errors: passwordErrors } = validatePassword({ password })
+  errors = { ...errors, ...passwordErrors }
+
+  // eslint-disable-next-line security/detect-possible-timing-attacks
+  if (password !== confirmPassword)
+    errors.confirmPassword = 'Passwords do not match'
+
+  if (Object.values(errors).length > 0) isValid = false
+
+  return { isValid, errors }
+}
+
+export const validateEmailAddress = (email) => {
+  let errors = {}
+  let isValid = true
+
+  if (isEmpty(email)) errors.email = 'Email cannot be empty'
+  else if (!isEmail(email)) errors.email = 'Invalid Email Address'
+
+  if (Object.values(errors).length > 0) isValid = false
 
   return { isValid, errors }
 }
 
 const verifyLoginInformation = ({ email, password }) => {
-  const errors = {}
+  let errors = {}
   let isValid = false
 
-  const { isValid: isEmailValid, errors: emailErrors } =
-    validateEmailAddress(email)
-  if (!isEmailValid) errors.email = emailErrors
+  const { errors: emailErrors } = validateEmailAddress(email)
+  const { errors: passwordErrors } = validatePassword({ password })
 
-  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
-    errors.password =
-      'Password must have minimum 8 characters, and at least one number'
+  errors = { ...errors, ...emailErrors, ...passwordErrors }
 
   if (Object.values(errors).length === 0) isValid = true
 
@@ -55,7 +81,7 @@ const verifyRegisterInformation = ({
   password,
   confirmPassword,
 }) => {
-  const errors = {}
+  let errors = {}
   let isValid = false
 
   const { isValid: isFirstNameValid, errors: firstNameErrors } = validateString(
@@ -70,17 +96,14 @@ const verifyRegisterInformation = ({
   )
   if (!isLastNameValid) errors.lastName = lastNameErrors
 
-  const { isValid: isEmailValid, errors: emailErrors } =
-    validateEmailAddress(email)
-  if (!isEmailValid) errors.email = emailErrors
+  const { errors: emailErrors } = validateEmailAddress(email)
 
-  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))
-    errors.password =
-      'Password must have minimum 8 characters, and at least one number'
+  const { errors: passwordsErrors } = validatePasswords({
+    password,
+    confirmPassword,
+  })
 
-  // eslint-disable-next-line security/detect-possible-timing-attacks
-  if (password !== confirmPassword)
-    errors.confirmPassword = 'Passwords do not match'
+  errors = { ...errors, ...emailErrors, ...passwordsErrors }
 
   if (Object.values(errors).length === 0) isValid = true
 

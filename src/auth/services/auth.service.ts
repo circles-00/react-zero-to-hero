@@ -9,6 +9,7 @@ import { UserAlreadyExistException } from '../../common/helpers/exceptions/user-
 import { RegistrationDto } from '../../dto/registration.dto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { IThirdPartyLoginPayload } from '../../common/interfaces/types'
+import { MailService } from '../../services/mail.service'
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
     private readonly usersRepository: Repository<User>,
     private readonly userService: UsersService,
     private readonly connection: Connection,
+    private readonly mailService: MailService,
   ) {}
 
   comparePasswords(password: string, hash: string) {
@@ -89,5 +91,35 @@ export class AuthService {
       password: '',
     })
     return this.getAccessToken(createdUser)
+  }
+
+  async resetPassword(email: string, appUrl: string) {
+    const userFromDb = await this.usersRepository.findOne({
+      where: {
+        email,
+      },
+    })
+
+    if (!userFromDb) throw new Error("User doesn't exist")
+    const { accessToken } = this.getAccessToken(userFromDb)
+
+    return this.mailService.sendResetPasswordConfirmation(
+      accessToken,
+      email,
+      appUrl,
+    )
+  }
+
+  resetPasswordConfirm(user, password) {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update({
+        password,
+      })
+      .where({
+        id: user.id,
+      })
+      .returning('*')
+      .execute()
   }
 }

@@ -13,6 +13,7 @@ import { UsersService } from '../../services/users.service'
 import { GoogleAuthService } from '../services/google.auth.service'
 import { GithubAuthService } from '../services/github.auth.service'
 import { FacebookAuthService } from '../services/facebook.auth.service'
+import { MailService } from '../../services/mail.service'
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { FacebookAuthService } from '../services/facebook.auth.service'
     GoogleAuthService,
     GithubAuthService,
     FacebookAuthService,
+    MailService,
   ],
   controllers: [AuthController],
   exports: [
@@ -40,6 +42,7 @@ import { FacebookAuthService } from '../services/facebook.auth.service'
     GoogleAuthService,
     GithubAuthService,
     FacebookAuthService,
+    MailService,
   ],
 })
 export class AuthModule {}

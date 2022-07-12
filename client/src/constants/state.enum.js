@@ -17,4 +17,19 @@ const isFalseState = (variableToCheck) =>
   variableToCheck === commonStateEnum.FALSE &&
   variableToCheck !== commonStateEnum.INITIAL_STATE
 
-export { commonStateEnum, isInitialState, isTrueState, isFalseState }
+const isSuccessState = (variableToCheck) =>
+  variableToCheck === commonStateEnum.SUCCESS &&
+  variableToCheck !== commonStateEnum.INITIAL_STATE
+
+const isFailureState = (variableToCheck) =>
+  variableToCheck === commonStateEnum.FAILURE &&
+  variableToCheck !== commonStateEnum.INITIAL_STATE
+
+export {
+  commonStateEnum,
+  isInitialState,
+  isTrueState,
+  isFalseState,
+  isSuccessState,
+  isFailureState,
+}
