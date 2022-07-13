@@ -5,10 +5,9 @@ node {
     }
 
 //      if (env.BRANCH_NAME == 'setup-cd-ci' ) {
-        withEnv([
-                "DB_USER=postgres",
+        withEnv(["DB_USER=postgres",
                 "DB_PASSWORD=manigli1",
-                "DB_HOST=localhost",
+                "DB_HOST=db",
                 "DB_PORT=5432",
                 "DB_DATABASE=dnic_proektna",
                 "RUN_MIGRATIONS=true",
@@ -26,6 +25,7 @@ node {
                 "MAIL_APP_PASSWORD=ltlzivddzabeowxg",
                 "PORT_NUMBER=5000",
                 "NODE_ENV=production",
+                "MODE=production"
                 ]) {
             stage('Build Docker Image') {
                 sh "echo GENERATE_SOURCEMAP=false >> ./client/.env"

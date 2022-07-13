@@ -1,4 +1,4 @@
-version: "1"
+version: "3"
 
 services:
   backend:
@@ -6,19 +6,51 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        DATABASE_URL: ${DATABASE_URL}
+        REACT_APP_GOOGLE_CLIENT_ID: ${REACT_APP_GOOGLE_CLIENT_ID}
+        REACT_APP_GITHUB_CLIENT_ID: ${REACT_APP_GITHUB_CLIENT_ID}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
+        DB_DATABASE: ${DB_DATABASE}
+        RUN_MIGRATIONS: ${RUN_MIGRATIONS}
         JWT_SECRET: ${JWT_SECRET}
+        GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+        GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+        GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+        GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        GENERATE_SOURCEMAP: ${GENERATE_SOURCEMAP}
+        MAIL_HOST: ${MAIL_HOST}
+        MAIL_USER: ${MAIL_USER}
+        MAIL_PASSWORD: ${MAIL_PASSWORD}
+        MAIL_APP_PASSWORD: ${MAIL_APP_PASSWORD}
+        MODE: ${MODE}
         NODE_ENV: ${NODE_ENV}
         PORT_NUMBER: ${PORT_NUMBER}
-
     image: react-zero-to-hero:${BUILD_NUMBER}
     container_name: react-zero-to-hero-${BRANCH_NAME}
     environment:
-      - DATABASE_URL
+      - DB_USER
+      - DB_PASSWORD
+      - DB_HOST
+      - DB_PORT
+      - DB_DATABASE
+      - RUN_MIGRATIONS
       - JWT_SECRET
+      - GOOGLE_CLIENT_ID
+      - REACT_APP_GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - GITHUB_CLIENT_ID
+      - GITHUB_CLIENT_SECRET
+      - REACT_APP_GITHUB_CLIENT_ID
+      - GENERATE_SOURCEMAP
+      - MAIL_HOST
+      - MAIL_USER
+      - MAIL_PASSWORD
+      - MAIL_APP_PASSWORD
+      - MODE
       - NODE_ENV
       - PORT_NUMBER
-
     restart: always
     ports:
       - "${PORT_NUMBER}:5000"
