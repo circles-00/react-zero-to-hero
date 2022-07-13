@@ -5,14 +5,27 @@ node {
     }
 
 //      if (env.BRANCH_NAME == 'setup-cd-ci' ) {
-        withEnv(['DATABASE_URL=postgres://postgres:123123@db:5432/dnic_proektna',
-                "JWT_SECRET=txD1xNdEWgDbQMpq7qo5WmPqf1o",
+        withEnv([
                 "DB_USER=postgres",
-                "DB_PASSWORD=123123",
-                "DB_DATABASE=dnic_proektna",
+                "DB_PASSWORD=manigli1",
+                "DB_HOST=localhost",
                 "DB_PORT=5432",
+                "DB_DATABASE=dnic_proektna",
+                "RUN_MIGRATIONS=true",
+                "JWT_SECRET=YOwSWIOCp8uzTRVB0FpmyHFshinkFRdNI0RmRmghlGzEtcDJWIPdhcKRVvbpSTr94chWiU8T9egBNVyc5QKKXukAiwb5TTP1VzaLcxYNVQPDOacKLxP2NKxDmy6FkLbo",
+                "GOOGLE_CLIENT_ID=125729995231-kggsu8dh897l4sa8ru8e38qvc9is6cqv.apps.googleusercontent.com",
+                "REACT_APP_GOOGLE_CLIENT_ID=125729995231-kggsu8dh897l4sa8ru8e38qvc9is6cqv.apps.googleusercontent.com",
+                "GOOGLE_CLIENT_SECRET=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",
+                "GITHUB_CLIENT_ID=2c75bb25394b67e645fc",
+                "GITHUB_CLIENT_SECRET=80bd981c63ebd8f57111a1e8fb35cc63c8ee2c94",
+                "REACT_APP_GITHUB_CLIENT_ID=2c75bb25394b67e645fc",
+                "GENERATE_SOURCEMAP=false",
+                "MAIL_HOST=smtp.gmail.com",
+                "MAIL_USER=contact.react.zero.hero@gmail.com",
+                "MAIL_PASSWORD=Manigli1",
+                "MAIL_APP_PASSWORD=ltlzivddzabeowxg",
                 "PORT_NUMBER=5000",
-                "NODE_ENV=production"
+                "NODE_ENV=production",
                 ]) {
             stage('Build Docker Image') {
                 sh "echo GENERATE_SOURCEMAP=false >> ./client/.env"

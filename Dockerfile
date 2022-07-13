@@ -13,14 +13,19 @@ WORKDIR /usr/src/react-zero-to-hero
 COPY . .
 
 RUN yarn
-RUN yarn build
+RUN yarn typeorm:migration:run
 
 
 WORKDIR /usr/src/react-zero-to-hero/client
 RUN echo "GENERATE_SOURCEMAP=false" > ./.env
 
-# ARG REACT_APP_BASIC_PLAN
-# ENV REACT_APP_BASIC_PLAN=$REACT_APP_BASIC_PLAN
+
+# React env vars
+ARG REACT_APP_GOOGLE_CLIENT_ID
+ARG REACT_APP_GITHUB_CLIENT_ID
+ENV REACT_APP_GOOGLE_CLIENT_ID=$REACT_APP_GOOGLE_CLIENT_ID
+ENV REACT_APP_GITHUB_CLIENT_ID=$REACT_APP_GITHUB_CLIENT_ID
+
 
 RUN yarn install --production=true
 
