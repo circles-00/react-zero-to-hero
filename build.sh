@@ -8,4 +8,4 @@ if [ "$RUN_MIGRATIONS" ]; then
   npm run typeorm:migration:run
 fi
 
-yarn dev
+yarn start

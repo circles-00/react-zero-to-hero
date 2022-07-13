@@ -9,6 +9,8 @@ import { UsersModule } from './users.module'
 import { ScheduleModule } from '@nestjs/schedule'
 import { LessonsModule } from './lessons.module'
 import { MailModule } from './mail.module'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { join } from 'path'
 
 @Module({
   imports: [
@@ -19,6 +21,9 @@ import { MailModule } from './mail.module'
     UsersModule,
     LessonsModule,
     MailModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../../client/build'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
