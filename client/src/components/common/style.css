@@ -12,7 +12,7 @@ html, body {
     background: linear-gradient(to right bottom, #7000b1, #56119c, #3f1685, #2b166e, #1a1357) no-repeat;
     height: 100%;
     margin: 0;
-    overflow: scroll;
+    overflow: auto;
     color: #ffffff;
 }
 
@@ -138,8 +138,8 @@ footer {
 
 .blog-pre {
     margin-bottom: 3em !important;
-    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 35px -23px 2px -16px rgba(0, 0, 0, 0);
-    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 35px -23px 2px -16px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: -10px 0 13px -7px #000000, 10px 0 13px -7px #000000, 35px -23px 2px -16px rgba(0, 0, 0, 0);
+    box-shadow: -10px 0 13px -7px #000000, 10px 0 13px -7px #000000, 35px -23px 2px -16px rgba(0, 0, 0, 0);
     position: relative;
 }
 
@@ -164,4 +164,33 @@ footer {
     border-radius: initial !important;
     width: auto !important;
     background-color: transparent !important;
+}
+
+/* SCROLLBAR */
+
+/*Mozilla*/
+* {
+    scrollbar-width: 20px;
+    scrollbar-color: #00FFD5 #000000;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #00FFD5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #00FFD5;
 }

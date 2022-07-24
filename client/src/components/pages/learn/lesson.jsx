@@ -1,7 +1,7 @@
-import starFillVector from '../../../assets/img/star-fill.png'
-import starNonFillVector from '../../../assets/img/star-nonfill.png'
 import './style.css'
-import { generateRangeArray } from '../../../utils/common'
+import { useHistory } from 'react-router'
+import Difficulty from './difficulty'
+import { singleLessonPage } from '../../../config/routes'
 
 const Lesson = ({
   idx,
@@ -11,6 +11,7 @@ const Lesson = ({
   isDone,
   showSeparator,
 }) => {
+  const history = useHistory()
   const getIsDisabled = () => !isDone && idx !== 0 && !showSeparator
   return (
     <div className="container-sm d-flex flex-column text-start lesson-container">
@@ -19,27 +20,15 @@ const Lesson = ({
       </h5>
       <p className="common-font-size">{shortDescription}</p>
       <div className="d-flex flex-row justify-content-between">
-        <div className="difficulty-container d-flex flex-row">
-          <span className="common-font-size">DIFFICULTY: </span>
-          {generateRangeArray(difficulty).map((val) => (
-            <img
-              key={val}
-              alt="star"
-              className="single-star"
-              src={starFillVector}
-            />
-          ))}
-          {generateRangeArray(5 - difficulty).map((val) => (
-            <img
-              key={val}
-              alt="star"
-              className="single-star"
-              src={starNonFillVector}
-            />
-          ))}
-        </div>
+        <Difficulty difficulty={difficulty} />
         <button
           disabled={getIsDisabled()}
+          onClick={
+            !getIsDisabled()
+              ? () =>
+                  history.push(singleLessonPage.path.replace(':id', idx + 1))
+              : null
+          }
           className={`justify-content-end ${getIsDisabled() ? 'disabled' : ''}`}
           style={{ color: '#7000B1' }}
         >

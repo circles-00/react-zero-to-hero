@@ -27,4 +27,8 @@ export const apiPaths = {
     path: '/api/lessons',
     method: 'get',
   },
+  markLessonAsDone: {
+    path: '/api/lessons',
+    method: 'put',
+  },
 }

@@ -4,6 +4,7 @@ import LearnPage from '../pages/learn.page'
 import RegisterPage from '../pages/register.page'
 import CommunityPage from '../pages/community.page'
 import ResetPasswordPage from '../pages/reset-password-page'
+import LessonPage from '../pages/lesson.page'
 
 export const homePage = {
   path: '/',
@@ -68,6 +69,15 @@ export const resetPasswordRedirectPage = {
   ignoreNav: true,
 }
 
+export const singleLessonPage = {
+  path: '/lesson/:id',
+  exact: true,
+  element: <LessonPage />,
+  component: LessonPage,
+  title: 'Lesson Page',
+  ignoreNav: true,
+}
+
 export const pagePaths = {
   publicRoutes: [
     homePage,
@@ -76,5 +86,5 @@ export const pagePaths = {
     resetPasswordPage,
     resetPasswordRedirectPage,
   ],
-  privateRoutes: [learnPage, communityPage],
+  privateRoutes: [learnPage, singleLessonPage, communityPage],
 }

@@ -15,7 +15,7 @@ const Markdown = ({ markdownText }) => {
       rehypePlugins={[rehypeRaw]}
       components={{
         pre: Pre,
-        code({ node, inline, className = 'blog-code', children, ...props }) {
+        code({ inline, className = 'blog-code', children, ...props }) {
           const match = /language-(\w+)/.exec(className || '')
           return !inline && match ? (
             <SyntaxHighlighter

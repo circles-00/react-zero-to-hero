@@ -33,9 +33,10 @@ const LearnPage = () => {
               shortDescription={lesson.shortDescription}
               difficulty={lesson.difficulty}
               isDone={lesson.isDone}
+              lessons={lessons}
               showSeparator={showSeparator(idx, lesson)}
             />
-            {showSeparator(idx, lesson) ? (
+            {showSeparator(idx, lesson) && idx !== lessons.length - 1 ? (
               <div
                 className="d-flex flex-row justify-content-between"
                 style={{

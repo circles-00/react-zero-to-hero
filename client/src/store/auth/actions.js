@@ -10,6 +10,7 @@ import { apiPaths } from '../../constants/api.paths'
 import { setAuthToken } from '../../utils/auth'
 import { setLoading, unSetLoading } from '../feedback/actions'
 import { commonStateEnum } from '../../constants/state.enum'
+import { invalidateLessonsState } from '../lessons/actions'
 
 export const setIsAuthenticated = (payload) => ({
   type: SET_IS_AUTHENTICATED,
@@ -42,6 +43,7 @@ export const logout = () => (dispatch) => {
   setAuthToken(undefined)
   dispatch(setNotAuthenticated())
   localStorage.removeItem('jwtToken')
+  dispatch(invalidateLessonsState())
 }
 
 export const login = (payload) => async (dispatch) => {

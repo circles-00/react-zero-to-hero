@@ -41,4 +41,15 @@ export class LessonsService {
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
       )
   }
+
+  async markLessonAsDone(lessonId: string, userId: string) {
+    // Should probably use the current state that is in the database, so we avoid manual sending of lessonId from frontend,
+    // As someone could hardcode us the lessonId in a request,
+    // But as this application is not really that complex, this should work just fine
+    return await this.userLessonRepository.save({
+      lessonId,
+      userId,
+      isDone: true,
+    })
+  }
 }

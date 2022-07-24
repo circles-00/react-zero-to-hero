@@ -3,7 +3,7 @@ import { rootReducer } from './rootReducer'
 import thunk from 'redux-thunk'
 
 const reduxDevToolsCompose =
-  typeof window !== 'undefined'
+  typeof window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] !== 'undefined'
     ? window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']
     : compose
 

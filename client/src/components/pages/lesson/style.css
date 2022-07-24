@@ -1,0 +1,37 @@
+.lesson-page-container {
+    margin-top: -45px;
+}
+
+.lesson-page-content {
+    padding-right: 10px;
+    width: 65%;
+    margin-top: 35px;
+    overflow-y: scroll;
+    max-height: 65vh;
+}
+
+.lesson-page-content, .lesson-page-content p {
+    font-size: 22px;
+}
+
+.upcoming-lessons {
+    margin-left: 20px;
+    margin-top: 35px;
+    border: #00FFD5 solid 3px;
+    padding: 25px;
+    align-self: flex-start;
+}
+
+.upcoming-lessons h3 {
+    margin-top: 25px;
+}
+
+.upcoming-lessons-wrapper > button {
+    margin-top: 30px;
+    height: 85px;
+    border: none;
+    font-family: Inter, 'Helvetica', 'Arial', 'sans-serif';
+    font-size: 14px;
+    margin-left: 20px;
+    border-radius: 5px;
+}

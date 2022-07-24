@@ -25,3 +25,16 @@ export const fetchLessons = () => async (dispatch) => {
     dispatch(unSetLoading())
   }
 }
+
+export const markLessonAsDone = (lessonId) => async (dispatch) => {
+  try {
+    await axios[apiPaths.markLessonAsDone.method](
+      apiPaths.markLessonAsDone.path,
+      { lessonId },
+    )
+    dispatch(invalidateLessonsState())
+    dispatch(fetchLessons())
+  } catch (err) {
+    dispatch(unSetLoading())
+  }
+}
