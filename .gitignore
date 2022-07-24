@@ -3,3 +3,4 @@ node_modules
 load_env_vars.sh
 package-lock.json
 yarn.lock
+dist

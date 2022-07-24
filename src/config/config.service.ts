@@ -1,10 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { Logger, Injectable } from '@nestjs/common'
+
 import { DataSource, DataSourceOptions } from 'typeorm'
-
-import { config } from 'dotenv'
-
-config()
 
 @Injectable()
 class ConfigService {
@@ -54,7 +51,7 @@ class ConfigService {
         'dist/src/auth/subscribers/**/*{.js,.ts}',
       ],
 
-      ssl: this.isProduction(),
+      ssl: false,
     }
   }
 

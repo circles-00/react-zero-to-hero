@@ -27,7 +27,7 @@ services:
         MODE: ${MODE}
         NODE_ENV: ${NODE_ENV}
         PORT_NUMBER: ${PORT_NUMBER}
-    image: react-zero-to-hero:${BUILD_NUMBER}
+    image: react-zero-to-hero
     container_name: react-zero-to-hero-${BRANCH_NAME}
     environment:
       - DB_USER

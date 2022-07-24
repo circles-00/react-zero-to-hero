@@ -14,9 +14,8 @@ COPY . .
 
 RUN echo $DB_HOST
 
-RUN yarn install --network-timeout 900000
+RUN yarn
 RUN yarn build
-RUN yarn typeorm:migration:run
 
 
 WORKDIR /usr/src/react-zero-to-hero/client
@@ -38,4 +37,4 @@ RUN yarn build
 WORKDIR /usr/src/react-zero-to-hero
 
 # start services
-CMD ["yarn", "start"]
+CMD npm run typeorm:migration:run && yarn start
