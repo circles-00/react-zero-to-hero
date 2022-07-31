@@ -31,4 +31,8 @@ export const apiPaths = {
     path: '/api/lessons',
     method: 'put',
   },
+  challengesApi: {
+    path: '/api/practice',
+    method: 'get',
+  },
 }

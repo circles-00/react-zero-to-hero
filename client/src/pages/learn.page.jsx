@@ -1,13 +1,15 @@
-import { Fragment } from 'react'
-import Title from '../components/pages/learn/title'
-import Lesson from '../components/pages/learn/lesson'
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchLessons } from '../store/lessons/actions'
+import { useHistory } from 'react-router'
+import InfoCard from '../components/common/info-card'
+import Title from '../components/pages/learn/title'
+import { singleLessonPage } from '../config/routes'
 import { isInitialState } from '../constants/state.enum'
+import { fetchLessons } from '../store/lessons/actions'
 
 const LearnPage = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const {
     lessons: { lessons },
@@ -21,20 +23,24 @@ const LearnPage = () => {
     (idx - 1 >= 0 && !lesson.isDone && lessons[idx - 1].isDone) ||
     (idx === 0 && !lesson.isDone)
 
+  const onButtonClickCb = (idx) =>
+    history.push(singleLessonPage.path.replace(':id', idx + 1))
+
   return (
     <section className="container-lg d-flex justify-content-center flex-column text-center">
       <Title />
       {!isInitialState(lessons) &&
         lessons.map((lesson, idx) => (
           <Fragment key={idx}>
-            <Lesson
+            <InfoCard
               idx={idx}
               title={lesson.title}
               shortDescription={lesson.shortDescription}
               difficulty={lesson.difficulty}
               isDone={lesson.isDone}
-              lessons={lessons}
               showSeparator={showSeparator(idx, lesson)}
+              useSeparatorLogic={true}
+              onButtonClick={onButtonClickCb}
             />
             {showSeparator(idx, lesson) && idx !== lessons.length - 1 ? (
               <div

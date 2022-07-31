@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "react-zero-to-hero",
+            "database": "dnic_proektna",
+            "username": "postgres",
+            "password": "manigli1"
+        }
+    ]
+}

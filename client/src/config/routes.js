@@ -1,10 +1,12 @@
-import HomePage from '../pages/home.page'
-import LoginPage from '../pages/login.page'
-import LearnPage from '../pages/learn.page'
-import RegisterPage from '../pages/register.page'
+import CertificationPage from '../pages/certification.page'
 import CommunityPage from '../pages/community.page'
-import ResetPasswordPage from '../pages/reset-password-page'
+import HomePage from '../pages/home.page'
+import LearnPage from '../pages/learn.page'
 import LessonPage from '../pages/lesson.page'
+import LoginPage from '../pages/login.page'
+import PracticePage from '../pages/practice.page'
+import RegisterPage from '../pages/register.page'
+import ResetPasswordPage from '../pages/reset-password-page'
 
 export const homePage = {
   path: '/',
@@ -78,6 +80,24 @@ export const singleLessonPage = {
   ignoreNav: true,
 }
 
+export const certificationPage = {
+  path: '/certification',
+  exact: true,
+  element: <CertificationPage />,
+  component: CertificationPage,
+  title: 'Certification',
+  ignoreNav: false,
+}
+
+export const practicePage = {
+  path: '/practice',
+  exact: true,
+  element: <PracticePage />,
+  component: PracticePage,
+  title: 'Practice',
+  ignoreNav: false,
+}
+
 export const pagePaths = {
   publicRoutes: [
     homePage,
@@ -86,5 +106,11 @@ export const pagePaths = {
     resetPasswordPage,
     resetPasswordRedirectPage,
   ],
-  privateRoutes: [learnPage, singleLessonPage, communityPage],
+  privateRoutes: [
+    learnPage,
+    singleLessonPage,
+    practicePage,
+    certificationPage,
+    communityPage,
+  ],
 }

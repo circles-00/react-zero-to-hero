@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import '../components/pages/lesson/style.css'
+import { useParams } from 'react-router'
+import Loader from '../components/common/loader'
 import LessonContent from '../components/pages/lesson/content'
+import '../components/pages/lesson/style.css'
 import Title from '../components/pages/lesson/title'
 import UpcomingLessons from '../components/pages/lesson/upcoming-lessons'
-import Loader from '../components/common/loader'
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState({})

@@ -1,5 +1,4 @@
-import Difficulty from '../learn/difficulty'
-import React from 'react'
+import Difficulty from '../../common/difficulty'
 
 const LessonTitle = ({ idx, title, difficulty }) => (
   <div>

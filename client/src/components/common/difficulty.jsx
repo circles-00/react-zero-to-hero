@@ -1,6 +1,6 @@
-import { generateRangeArray } from '../../../utils/common'
-import starFillVector from '../../../assets/img/star-fill.png'
-import starNonFillVector from '../../../assets/img/star-nonfill.png'
+import starFillVector from '../../assets/img/star-fill.png'
+import starNonFillVector from '../../assets/img/star-nonfill.png'
+import { generateRangeArray } from '../../utils/common'
 
 const Difficulty = ({ difficulty, style }) => {
   return (
