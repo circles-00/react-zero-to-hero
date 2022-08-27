@@ -15,7 +15,7 @@ export class MailService {
     await this.mailerService.sendMail({
       to: email,
       subject: '[React Zero to Hero] Reset your password!',
-      template: './reset-password.template.hbs',
+      template: '../mail/templates/reset-password.template.hbs',
       context: {
         RESET_PASSWORD_LINK: confirmationUrl,
         HOST: appUrl,
