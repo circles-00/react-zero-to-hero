@@ -12,7 +12,7 @@ export class GithubAuthService {
     this.githubClient = new GithubOauthClient({
       clientId,
       clientSecret,
-      redirectUri: 'http://localhost:3000/login',
+      redirectUri: 'https://react-hero.krezz.me/login',
       scope: 'user:email',
     })
   }

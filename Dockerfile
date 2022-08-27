@@ -37,4 +37,4 @@ RUN yarn build
 WORKDIR /usr/src/react-zero-to-hero
 
 # start services
-CMD npm run typeorm:migration:run && yarn start
+CMD ["yarn", "start"]
