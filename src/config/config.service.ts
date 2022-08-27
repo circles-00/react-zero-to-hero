@@ -44,11 +44,11 @@ class ConfigService {
 
       migrationsTableName: 'migration',
 
-      entities: ['src/models/**/*{.js,.ts}'],
-      migrations: ['src/database/migrations/**/*{.js,.ts}'],
+      entities: ['dist/models/**/*{.js,.ts}'],
+      migrations: ['dist/database/migrations/**/*{.js,.ts}'],
       subscribers: [
-        'src/subscribers/**/*{.js,.ts}',
-        'src/auth/subscribers/**/*{.js,.ts}',
+        'dist/subscribers/**/*{.js,.ts}',
+        'dist/auth/subscribers/**/*{.js,.ts}',
       ],
 
       ssl: false,
