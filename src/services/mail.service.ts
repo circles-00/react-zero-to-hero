@@ -1,5 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer'
 import { Injectable } from '@nestjs/common'
+import { join } from 'path'
 
 @Injectable()
 export class MailService {
@@ -15,7 +16,10 @@ export class MailService {
     await this.mailerService.sendMail({
       to: email,
       subject: '[React Zero to Hero] Reset your password!',
-      template: '../mail/templates/reset-password.template.hbs',
+      template: join(
+        __dirname,
+        '../mail/templates/reset-password.template.hbs',
+      ),
       context: {
         RESET_PASSWORD_LINK: confirmationUrl,
         HOST: appUrl,

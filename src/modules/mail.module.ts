@@ -24,7 +24,7 @@ const {
         from: '"no-reply" <noreply@react-zero-to-hero.com>',
       },
       template: {
-        dir: join(__dirname, '../mail/templates'),
+        dir: join(__dirname, './mail/templates'),
         adapter: new HandlebarsAdapter(), // or new PugAdapter() or new EjsAdapter()
         options: {
           strict: true,
