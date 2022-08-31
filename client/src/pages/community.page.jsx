@@ -1,4 +1,5 @@
 import discordLogo from '../assets/img/mdi_discord.png'
+const { DISCORD_INVITE_URL: discordInviteUrl } = process.env
 
 const CommunityPage = () => {
   return (
@@ -18,9 +19,7 @@ const CommunityPage = () => {
       </p>
 
       <div className="d-flex justify-content-between discord-container">
-        <button
-          onClick={() => (window.location.href = 'https://discord.gg/Zmma5a9w')}
-        >
+        <button onClick={() => (window.location.href = discordInviteUrl)}>
           JOIN NOW
         </button>
         <img alt="discord-logo" src={discordLogo} />

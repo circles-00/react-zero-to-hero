@@ -25,7 +25,8 @@ node {
                 "MAIL_APP_PASSWORD=ltlzivddzabeowxg",
                 "PORT_NUMBER=5000",
                 "NODE_ENV=production",
-                "MODE=production"
+                "MODE=production",
+                "DISCORD_INVITE_URL=https://discord.gg/55HABBQSgQ"
                 ]) {
             stage('Build Docker Image') {
                 sh "echo GENERATE_SOURCEMAP=false >> ./client/.env"
