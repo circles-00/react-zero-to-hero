@@ -1,5 +1,6 @@
 import discordLogo from '../assets/img/mdi_discord.png'
-const { DISCORD_INVITE_URL: discordInviteUrl } = process.env
+const { REACT_APP_DISCORD_INVITE_URL: discordInviteUrl } = process.env
+console.log(discordInviteUrl, process.env)
 
 const CommunityPage = () => {
   return (

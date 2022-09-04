@@ -26,7 +26,7 @@ node {
                 "PORT_NUMBER=5000",
                 "NODE_ENV=production",
                 "MODE=production",
-                "DISCORD_INVITE_URL=https://discord.gg/55HABBQSgQ"
+                "REACT_APP_DISCORD_INVITE_URL=https://discord.gg/55HABBQSgQ"
                 ]) {
             stage('Build Docker Image') {
                 sh "echo GENERATE_SOURCEMAP=false >> ./client/.env"
