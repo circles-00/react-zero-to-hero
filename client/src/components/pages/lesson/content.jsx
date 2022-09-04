@@ -1,4 +1,4 @@
-import Markdown from '../../common/markdown'
+import Markdown from '../../common/markdown-component/markdown'
 import React from 'react'
 
 const LessonContent = ({ description }) => {

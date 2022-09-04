@@ -1,4 +1,4 @@
-import MainContent from '../components/pages/home/mainContent'
+import MainContent from '../components/pages/home/main-content'
 
 const HomePage = () => {
   return (

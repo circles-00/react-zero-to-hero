@@ -1,4 +1,4 @@
-import RegisterForm from '../components/pages/register/RegisterForm'
+import RegisterForm from '../components/pages/register/register.form'
 import { isFalseState } from '../constants/state.enum'
 import useAuthRedirect from '../hooks/useAuthRedirect'
 

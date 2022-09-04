@@ -1,12 +1,11 @@
-import LocalLoginForm from './LocalLoginForm'
-import ThirdPartyLogin from './ThirdPartyLogin'
+import ThirdPartyLogin from '../login/third-party-login'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { login } from '../../../store/auth/actions'
-import './style.css'
-import { verifyLoginInformation } from '../../../utils/validation'
-import { useHistory } from 'react-router'
+import { register } from '../../../store/auth/actions'
+import { verifyRegisterInformation } from '../../../utils/validation'
 import { learnPage } from '../../../config/routes'
+import LocalRegisterForm from './local-register.form'
+import { useHistory } from 'react-router'
 import { isTrueState } from '../../../constants/state.enum'
 import useForm from '../../../hooks/useForm'
 
@@ -18,17 +17,19 @@ import useForm from '../../../hooks/useForm'
  *
  */
 
-const LoginForm = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  const {
-    auth: { errors: authErrors, isAuthenticated },
-  } = useSelector((state) => state)
+const RegisterForm = () => {
+  const dispatch = useDispatch(),
+    history = useHistory(),
+    {
+      auth: { errors: authErrors, isAuthenticated },
+    } = useSelector((state) => state)
 
   const { inputState, onInputChange, errors, setErrors } = useForm({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    confirmPassword: '',
   })
 
   useEffect(() => {
@@ -43,20 +44,14 @@ const LoginForm = () => {
     }
   }, [isAuthenticated, history])
 
-  const isGithubEvent = (event) =>
-    event.nativeEvent.submitter.className.includes('github-button')
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    // Workaround
-    if (isGithubEvent(event)) return
-
-    const { isValid, errors } = verifyLoginInformation({ ...inputState })
+    const { isValid, errors } = verifyRegisterInformation({ ...inputState })
     if (!isValid) {
       setErrors(errors)
     } else {
       setErrors({})
-      dispatch(login({ ...inputState }))
+      dispatch(register({ ...inputState }))
     }
   }
 
@@ -65,7 +60,7 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       className="container-lg d-flex justify-content-center flex-column text-center login-form-container"
     >
-      <LocalLoginForm
+      <LocalRegisterForm
         inputState={inputState}
         onInputChange={onInputChange}
         errors={errors}
@@ -86,4 +81,4 @@ const SeparatorLine = () => {
   )
 }
 
-export default LoginForm
+export default RegisterForm

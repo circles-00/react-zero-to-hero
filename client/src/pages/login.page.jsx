@@ -1,4 +1,4 @@
-import LoginForm from '../components/pages/login/LoginForm'
+import LoginForm from '../components/pages/login/login.form'
 import { isFalseState } from '../constants/state.enum'
 import useAuthRedirect from '../hooks/useAuthRedirect'
 
