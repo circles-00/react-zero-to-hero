@@ -11,14 +11,16 @@ const MainContent = () => {
         height="444"
       />
       <div className="flex-column justify-content-between main-content-text-container">
-        <h1 className="main-content-heading text-main-color">BRAND NAME</h1>
+        <h1 className="main-content-heading text-main-color">
+          REACT ZERO TO HERO
+        </h1>
         <h1 className="main-content-heading text-color-white">
           LEARN REACT FROM THE BEST TODAY!
         </h1>
         <p className="main-content-paragraph text-color-white">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Potenti
-          sagittis sit a et ante semper nibh tellus. Nibh viverra sollicitudin
-          feugiat arcu, varius elit rhoncus commodo eget.{' '}
+          Get access to numerous courses and learn from the best, today! <br />
+          Get your own certificate for finishing the React course and open new
+          opportunities for yourself
         </p>
       </div>
     </section>
