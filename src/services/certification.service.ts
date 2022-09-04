@@ -32,6 +32,7 @@ export class CertificationService {
       certificationData.dueDate = userCertificationData.dueDate
       certificationData.isDone = userCertificationData.isDone
       certificationData.certificate = userCertificationData.certificate
+      certificationData.progress = userCertificationData.progress
     }
 
     return certificationData
@@ -141,6 +142,16 @@ export class CertificationService {
     const [certificationData] = await this.certificationRepository.find()
     // Due date is 15min later
     const dueDate = new Date(new Date().getTime() + 15 * 60000)
+
+    const userCertificationExists =
+      await this.userCertificationRepository.findOne({
+        where: {
+          userId: user.id,
+          certificationId: certificationData.id,
+        },
+      })
+
+    if (userCertificationExists) return
 
     return await this.userCertificationRepository.save({
       userId: user.id,

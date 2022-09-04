@@ -39,4 +39,16 @@ export const apiPaths = {
     path: '/api/practice/checkAnswer',
     method: 'post',
   },
+  getCertificationDataApi: {
+    path: '/api/certification',
+    method: 'get',
+  },
+  beginCertificationApi: {
+    path: '/api/certification/beginCertification',
+    method: 'post',
+  },
+  certCheckAnswerApi: {
+    path: '/api/certification/checkAnswer',
+    method: 'post',
+  },
 }

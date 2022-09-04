@@ -8,6 +8,7 @@ import PracticePage from '../pages/practice.page'
 import RegisterPage from '../pages/register.page'
 import ResetPasswordPage from '../pages/reset-password-page'
 import ChallengePage from '../pages/challenge.page'
+import CertificationChallenge from '../pages/certification-challenge'
 
 export const homePage = {
   path: '/',
@@ -108,6 +109,15 @@ export const challengePage = {
   ignoreNav: true,
 }
 
+export const certificationChallengePage = {
+  path: '/certification-challenge',
+  exact: true,
+  element: <CertificationChallenge />,
+  component: CertificationChallenge,
+  title: 'Certification Challenge',
+  ignoreNav: true,
+}
+
 export const pagePaths = {
   publicRoutes: [
     homePage,
@@ -123,5 +133,6 @@ export const pagePaths = {
     certificationPage,
     communityPage,
     challengePage,
+    certificationChallengePage,
   ],
 }

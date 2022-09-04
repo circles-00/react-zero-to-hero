@@ -47,6 +47,6 @@ export const checkAnswer = (questionId, answerId) => async (dispatch) => {
     dispatch(setIsAnswerCorrect(isAnswerCorrect))
     dispatch(setIsComponentLoading(commonStateEnum.INITIAL_STATE))
   } catch (err) {
-    dispatch(unSetLoading())
+    dispatch(setIsComponentLoading(commonStateEnum.INITIAL_STATE))
   }
 }
