@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
+npm i -g yarn
+yarn && cd client && yarn && cd ..
+
 # Load env vars
 . load_env_vars.sh
-
-if [ "$RUN_MIGRATIONS" ]; then
-  echo "RUNNING MIGRATIONS";
-  npm run typeorm:migration:run
-fi
 
 yarn dev
