@@ -1,8 +1,9 @@
 import { commonStateEnum } from '../../constants/state.enum'
-import { SET_CHALLENGES } from './action.types'
+import { SET_CHALLENGES, SET_IS_ANSWER_CORRECT } from './action.types'
 
 const initialState = {
   challenges: commonStateEnum.INITIAL_STATE,
+  isAnswerCorrect: commonStateEnum.INITIAL_STATE,
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         challenges: action.payload,
+      }
+
+    case SET_IS_ANSWER_CORRECT:
+      return {
+        ...state,
+        isAnswerCorrect: action.payload,
       }
 
     default:

@@ -1,8 +1,13 @@
-import { SET_IS_LOADING_FALSE, SET_IS_LOADING_TRUE } from './action.types'
+import {
+  SET_IS_COMPONENT_LOADING,
+  SET_IS_LOADING_FALSE,
+  SET_IS_LOADING_TRUE,
+} from './action.types'
 import { commonStateEnum } from '../../constants/state.enum'
 
 const initialState = {
   isLoading: commonStateEnum.INITIAL_STATE,
+  isComponentLoading: commonStateEnum.INITIAL_STATE,
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +21,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: commonStateEnum.FALSE,
+      }
+
+    case SET_IS_COMPONENT_LOADING:
+      return {
+        ...state,
+        isComponentLoading: action.payload,
       }
     default:
       return state

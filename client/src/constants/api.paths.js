@@ -35,4 +35,8 @@ export const apiPaths = {
     path: '/api/practice',
     method: 'get',
   },
+  checkAnswerPracticeApi: {
+    path: '/api/practice/checkAnswer',
+    method: 'post',
+  },
 }

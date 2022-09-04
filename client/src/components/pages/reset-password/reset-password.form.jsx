@@ -1,5 +1,6 @@
 import CustomInput from '../../common/input'
 import { isTrueState } from '../../../constants/state.enum'
+import SubmitButton from '../../common/submit.button'
 
 const ResetPasswordForm = ({
   inputState = { email: '', password: '', confirmPassword: '' },
@@ -58,9 +59,7 @@ const ResetPasswordForm = ({
           )}
 
           <div className="d-flex flex-row justify-content-between">
-            <button className="secondary-color" type="submit">
-              Submit
-            </button>
+            <SubmitButton buttonTitle={'Submit'} />
           </div>
         </>
       )}

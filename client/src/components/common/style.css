@@ -227,3 +227,46 @@ footer {
 .difficulty-container {
     margin-top: 25px;
 }
+
+.answer-container {
+    background-color: #00FFD5;
+    padding: 25px;
+    margin-top: 45px;
+}
+
+.answer-container > p {
+    color: #7000B1;
+    margin-left: 25px;
+    font-size: 20px;
+    text-align: left;
+    line-height: 1.5;
+    width: 100%;
+}
+
+.radio-container {
+    width: 45px;
+    height: 40px;
+    color: transparent;
+    border: #7000B1 solid 2px;
+    border-radius: 50%;
+}
+
+.radio-container:hover {
+    cursor: pointer;
+}
+
+.radio-container-active {
+    width: 15px;
+    height: 15px;
+    background-color: #7000B1;
+    border-radius: 50%;
+}
+
+.submit-button {
+    margin-top: 20px;
+    background-color: #00FFD5;
+    border: none;
+    height: 43px;
+    border-radius: 5px;
+    width: 35%;
+}

@@ -33,6 +33,7 @@ const PracticePage = () => {
               initBtnText={'Solve Challenge'}
               doneBtnText={'Solved'}
               btnFontSize={'14px'}
+              isPractice={true}
             />
           </Fragment>
         ))}
