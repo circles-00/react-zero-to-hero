@@ -1,6 +1,7 @@
 import { Entity, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from './base.entity'
 import { UserLessons } from './user-lessons.entity'
+import { UserCertification } from './user-certification.entity'
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -35,4 +36,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => UserLessons, (userLessons) => userLessons.user)
   userLessons: UserLessons[]
+
+  @OneToMany(
+    () => UserCertification,
+    (userCertifications) => userCertifications.user,
+  )
+  userCertifications: UserCertification[]
 }

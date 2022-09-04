@@ -12,6 +12,7 @@ import { LessonsModule } from './lessons.module'
 import { MailModule } from './mail.module'
 import { PracticeModule } from './practice.module'
 import { UsersModule } from './users.module'
+import { CertificationModule } from './certification.module'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersModule } from './users.module'
     LessonsModule,
     MailModule,
     PracticeModule,
+    CertificationModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../../client/build'),
     }),
